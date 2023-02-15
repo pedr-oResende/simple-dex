@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import br.com.simpledex.data.remote.util.preferences.PreferencesWrapper
 import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
+import br.com.simpledex.presentation.screens.main.NavHostScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
+                    NavHostScreen(onBackPressedDispatcher = onBackPressedDispatcher)
                 }
             }
         }
