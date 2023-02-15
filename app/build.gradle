@@ -37,11 +37,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_11
     }
     buildFeatures {
         compose true
@@ -115,7 +115,7 @@ dependencies {
     implementation "io.insert-koin:koin-android-compat:$koin_version"
     implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
     implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
-    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_compose_version"
     testImplementation "io.insert-koin:koin-test:$koin_core_version"
     testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
 
@@ -124,4 +124,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    implementation 'org.apache.commons:commons-text:1.9'
 }

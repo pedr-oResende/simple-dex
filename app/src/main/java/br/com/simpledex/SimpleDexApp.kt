@@ -6,6 +6,7 @@ import br.com.simpledex.data.di.repositoryModule
 import br.com.simpledex.data.remote.service.di.apiModules
 import br.com.simpledex.data.remote.util.preferences.PreferencesWrapper
 import br.com.simpledex.domain.di.useCaseModule
+import br.com.simpledex.presentation.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -24,7 +25,8 @@ class SimpleDexApp : Application() {
                 apiModules,
                 mapperModule,
                 repositoryModule,
-                useCaseModule
+                useCaseModule,
+                viewModelModule
             )
         }
     }
