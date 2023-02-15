@@ -1,6 +1,6 @@
 package br.com.simpledex.data.repository
 
-import br.com.lighttasks.commom.mapper.Mapper
+import br.com.simpledex.commom.mapper.Mapper
 import br.com.simpledex.data.mapper.base.PagedListResponseToPagedListMapper
 import br.com.simpledex.data.model.pokemon.PokemonListResponse
 import br.com.simpledex.data.model.pokemon.PokemonResponse

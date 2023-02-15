@@ -8,12 +8,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class VersionsResponse(
-    @SerializedName("generation-i") val generationI: GenerationI?,
-    @SerializedName("generation-ii") val generationII: GenerationII?,
-    @SerializedName("generation-iii") val generationIII: GenerationIII?,
-    @SerializedName("generation-iv") val generationIV: GenerationIV?,
-    @SerializedName("generation-v") val generationV: GenerationV?,
-    @SerializedName("generation-vi") val generationVI: GenerationVI?,
-    @SerializedName("generation-vii") val generationVII: GenerationVII?,
-    @SerializedName("generation-viii") val generationVIII: GenerationVIII?
+    @SerializedName("generation-i") val generationI: GenerationIResponse?,
+    @SerializedName("generation-ii") val generationII: GenerationIIResponse?,
+    @SerializedName("generation-iii") val generationIII: GenerationIIIResponse?,
+    @SerializedName("generation-iv") val generationIV: GenerationIVResponse?,
+    @SerializedName("generation-v") val generationV: GenerationVResponse?,
+    @SerializedName("generation-vi") val generationVI: GenerationVIResponse?,
+    @SerializedName("generation-vii") val generationVII: GenerationVIIResponse?,
+    @SerializedName("generation-viii") val generationVIII: GenerationVIIIResponse?
 )
