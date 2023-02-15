@@ -1,6 +1,6 @@
 package br.com.simpledex.domain.repository
 
-import br.com.simpledex.domain.model.Pokemon
+import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.model.base.PagedList
 import br.com.simpledex.domain.model.pokemon.PokemonList
 import kotlinx.coroutines.flow.Flow

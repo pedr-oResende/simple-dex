@@ -5,16 +5,16 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import br.com.simpledex.domain.model.pokemon.PokemonList
+import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.widgets.CustomSwipeRefresh
 import br.com.simpledex.presentation.compose.widgets.top_bar.SearchTopBar
@@ -71,7 +71,8 @@ fun HomeMainScreen(
                         is StateUI.Processed -> {
                             PokemonListScreen(
                                 navHostController = navHostController,
-                                pokemonList = homeUI.filteredPokemonList
+                                pokemonList = homeUI.filteredPokemonList,
+                                isLoading = response.loading()
                             )
                         }
                         is StateUI.Processing -> Box(modifier = Modifier.fillMaxSize())
@@ -85,17 +86,23 @@ fun HomeMainScreen(
 @Composable
 fun PokemonListScreen(
     navHostController: NavHostController,
-    pokemonList: List<PokemonList>
+    pokemonList: List<Pokemon>,
+    isLoading: Boolean
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(pokemonList) {
-            Text(
-                modifier = Modifier.fillMaxWidth(),
-                text = it.name.orEmpty(),
-                textAlign = TextAlign.Center
+        items(pokemonList) { pokemon ->
+            PokemonItem(
+                pokemon = pokemon
             )
+        }
+        if (isLoading) {
+            item {
+                Box(modifier = Modifier.fillMaxWidth()) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
+            }
         }
     }
 }

@@ -7,7 +7,8 @@ val viewModelModule = module {
 
     single {
         HomeViewModel(
-            getNationalDexUseCase = get()
+            getNationalDexUseCase = get(),
+            getPokemonByNameUseCase = get()
         )
     }
 

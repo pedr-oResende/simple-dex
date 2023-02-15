@@ -1,6 +1,6 @@
 package br.com.simpledex.domain.use_case
 
-import br.com.simpledex.domain.model.Pokemon
+import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 

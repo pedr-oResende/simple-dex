@@ -9,6 +9,6 @@ class GetNationalDexUseCase(
     private val repository: PokemonRepository
 ) {
     operator fun invoke(): Flow<PagedList<PokemonList>> {
-        return repository.getPokemonList(limit = 10000, offset = 0)
+        return repository.getPokemonList(limit = 10, offset = 0)
     }
 }

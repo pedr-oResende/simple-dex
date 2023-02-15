@@ -2,9 +2,23 @@ package br.com.simpledex.data.model.pokemon
 
 import br.com.simpledex.*
 import br.com.simpledex.data.model.*
+import br.com.simpledex.data.model.ability.AbilitiesResponse
+import br.com.simpledex.data.model.form.FormsResponse
+import br.com.simpledex.data.model.game.GameIndicesResponse
+import br.com.simpledex.data.model.game.games.other.SpeciesResponse
+import br.com.simpledex.data.model.game.games.other.SpritesResponse
+import br.com.simpledex.data.model.game.games.other.StatsResponse
+import br.com.simpledex.data.model.game.games.other.TypesResponse
+import br.com.simpledex.data.model.move.MovesResponse
+import br.com.simpledex.domain.model.game.games.other.Species
+import br.com.simpledex.domain.model.game.games.other.Sprites
+import br.com.simpledex.domain.model.game.games.other.Stats
+import br.com.simpledex.domain.model.game.games.other.Types
+import br.com.simpledex.domain.model.move.Moves
+import br.com.simpledex.domain.model.game.GameIndices
 import com.google.gson.annotations.SerializedName
 
-data class PokemonResponse(
+class PokemonResponse(
     @SerializedName("abilities") val abilities: List<AbilitiesResponse>?,
     @SerializedName("base_experience") val baseExperience: Int?,
     @SerializedName("forms") val forms: List<FormsResponse>?,
