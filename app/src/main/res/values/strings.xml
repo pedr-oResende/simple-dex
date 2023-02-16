@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">Simple Dex</string>
+    <string name="app_name" translatable="false">Simple Dex</string>
+
+    <string name="normal_type">Normal</string>
+    <string name="fire_type">Fogo</string>
+    <string name="fighting_type">Lutador</string>
+    <string name="water_type">Água</string>
+    <string name="flying_type">Voador</string>
+    <string name="grass_type">Grama</string>
+    <string name="poison_type">Veneno</string>
+    <string name="electric_type">Elétrico</string>
+    <string name="ground_type">Terra</string>
+    <string name="psychic_type">Psíquico</string>
+    <string name="rock_type">Pedra</string>
+    <string name="ice_type">Gelo</string>
+    <string name="bug_type">Inseto</string>
+    <string name="dragon_type">Dragão</string>
+    <string name="ghost_type">Fantasma</string>
+    <string name="dark_type">Noturno</string>
+    <string name="steel_type">Metal</string>
+    <string name="fairy_type">Fada</string>
+
 </resources>

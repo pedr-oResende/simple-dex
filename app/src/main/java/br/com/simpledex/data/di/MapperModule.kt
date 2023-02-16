@@ -23,7 +23,6 @@ import br.com.simpledex.data.mapper.pokemon.PokemonListResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.PokemonResponseToEntityMapper
 import br.com.simpledex.data.mapper.stat.StatResponseToEntityMapper
 import br.com.simpledex.data.mapper.stat.StatsResponseToEntityMapper
-import br.com.simpledex.data.mapper.type.TypeResponseToEntityMapper
 import br.com.simpledex.data.mapper.type.TypesResponseToEntityMapper
 import org.koin.dsl.module
 
@@ -43,8 +42,6 @@ val mapperModule = module {
 
     single { MoveLearnMethodResponseToEntityMapper() }
 
-    single { TypeResponseToEntityMapper() }
-
     single { StatResponseToEntityMapper() }
 
     single { SpeciesResponseToEntityMapper() }
@@ -54,6 +51,8 @@ val mapperModule = module {
     single { IconsResponseToEntityMapper() }
 
     single { UltraSunUltraMoonResponseToEntityMapper() }
+
+    single { TypesResponseToEntityMapper() }
 
     single {
         VersionGroupDetailsResponseToEntityMapper(
@@ -91,12 +90,6 @@ val mapperModule = module {
     single {
         StatsResponseToEntityMapper(
             statResponseToEntityMapper = get<StatResponseToEntityMapper>()
-        )
-    }
-
-    single {
-        TypesResponseToEntityMapper(
-            typeResponseToEntityMapper = get<TypeResponseToEntityMapper>()
         )
     }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="normal_type">Normal</string>
+    <string name="fire_type">Fire</string>
+    <string name="fighting_type">Fighting</string>
+    <string name="water_type">Water</string>
+    <string name="flying_type">Flying</string>
+    <string name="grass_type">Grass</string>
+    <string name="poison_type">Poison</string>
+    <string name="electric_type">Electric</string>
+    <string name="ground_type">Ground</string>
+    <string name="psychic_type">Psychic</string>
+    <string name="rock_type">Rock</string>
+    <string name="ice_type">Ice</string>
+    <string name="bug_type">Bug</string>
+    <string name="dragon_type">Dragon</string>
+    <string name="ghost_type">Ghost</string>
+    <string name="dark_type">Dark</string>
+    <string name="steel_type">Steel</string>
+    <string name="fairy_type">Fairy</string>
+
+</resources>
