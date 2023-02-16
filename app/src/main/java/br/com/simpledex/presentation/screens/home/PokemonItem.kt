@@ -13,7 +13,7 @@ fun PokemonItem(
     pokemon: Pokemon
 ) {
     Text(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         text = pokemon.name.orEmpty(),
         textAlign = TextAlign.Center
     )

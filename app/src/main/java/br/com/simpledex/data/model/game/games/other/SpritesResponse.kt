@@ -15,6 +15,6 @@ class SpritesResponse(
     @SerializedName("front_female") val frontFemale: String?,
     @SerializedName("front_shiny") val frontShiny: String?,
     @SerializedName("front_shiny_female") val frontShinyFemale: String?,
-    @SerializedName("other") val other: Other?,
+    @SerializedName("other") val other: OtherResponse?,
     @SerializedName("versions") val versions: VersionsResponse?
 )

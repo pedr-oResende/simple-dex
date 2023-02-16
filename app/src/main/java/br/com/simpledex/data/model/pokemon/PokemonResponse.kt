@@ -7,15 +7,9 @@ import br.com.simpledex.data.model.form.FormsResponse
 import br.com.simpledex.data.model.game.GameIndicesResponse
 import br.com.simpledex.data.model.game.games.other.SpeciesResponse
 import br.com.simpledex.data.model.game.games.other.SpritesResponse
-import br.com.simpledex.data.model.game.games.other.StatsResponse
-import br.com.simpledex.data.model.game.games.other.TypesResponse
+import br.com.simpledex.data.model.stat.StatsResponse
+import br.com.simpledex.data.model.type.TypesResponse
 import br.com.simpledex.data.model.move.MovesResponse
-import br.com.simpledex.domain.model.game.games.other.Species
-import br.com.simpledex.domain.model.game.games.other.Sprites
-import br.com.simpledex.domain.model.game.games.other.Stats
-import br.com.simpledex.domain.model.game.games.other.Types
-import br.com.simpledex.domain.model.move.Moves
-import br.com.simpledex.domain.model.game.GameIndices
 import com.google.gson.annotations.SerializedName
 
 class PokemonResponse(

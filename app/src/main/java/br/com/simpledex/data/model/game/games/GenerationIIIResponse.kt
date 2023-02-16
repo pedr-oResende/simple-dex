@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class GenerationIIIResponse(
-    @SerializedName("emerald") val emerald: Emerald?,
-    @SerializedName("firered-leafgreen") val fireRedLeafGreen: FireRedLeafGreen?,
-    @SerializedName("ruby-sapphire") val rubySapphire: RubySapphire?
+    @SerializedName("emerald") val emerald: EmeraldResponse?,
+    @SerializedName("firered-leafgreen") val fireRedLeafGreen: FireRedLeafGreenResponse?,
+    @SerializedName("ruby-sapphire") val rubySapphire: RubySapphireResponse?
 )

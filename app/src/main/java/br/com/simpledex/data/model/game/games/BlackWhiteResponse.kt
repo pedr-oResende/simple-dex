@@ -1,12 +1,12 @@
 package br.com.simpledex.data.model.game.games
 
-import br.com.simpledex.domain.model.sprites.Animated
+import br.com.simpledex.data.model.sprites.AnimatedResponse
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 class BlackWhiteResponse(
-    @SerializedName("animated") val animated: Animated?,
+    @SerializedName("animated") val animated: AnimatedResponse?,
     @SerializedName("back_default") val backDefault: String?,
     @SerializedName("back_female") val backFemale: String?,
     @SerializedName("back_shiny") val backShiny: String?,

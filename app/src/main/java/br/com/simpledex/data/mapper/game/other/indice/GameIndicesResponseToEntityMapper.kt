@@ -1,4 +1,4 @@
-package br.com.simpledex.data.mapper.game.indice
+package br.com.simpledex.data.mapper.game.other.indice
 
 import br.com.simpledex.commom.mapper.Mapper
 import br.com.simpledex.data.model.game.GameIndicesResponse

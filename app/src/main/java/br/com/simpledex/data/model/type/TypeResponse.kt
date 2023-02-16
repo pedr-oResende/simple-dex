@@ -1,10 +1,10 @@
-package br.com.simpledex.data.model.game.games.other
+package br.com.simpledex.data.model.type
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class StatResponse(
+class TypeResponse(
     @SerializedName("name") val name: String?,
     @SerializedName("url") val url: String?
 )

@@ -1,6 +1,5 @@
-package br.com.simpledex.data.model.game.games.other
+package br.com.simpledex.data.model.stat
 
-import br.com.simpledex.domain.model.game.games.other.Stat
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
@@ -8,5 +7,5 @@ import kotlinx.serialization.Serializable
 class StatsResponse(
     @SerializedName("base_stat") val baseStat: Int?,
     @SerializedName("effort") val effort: Int?,
-    @SerializedName("stat") val stat: Stat?
+    @SerializedName("stat") val stat: StatResponse?
 )

@@ -1,8 +1,6 @@
 package br.com.simpledex.data.model.game.version
 
 import br.com.simpledex.data.model.move.MoveLearnMethodResponse
-import br.com.simpledex.domain.model.move.MoveLearnMethod
-import br.com.simpledex.domain.model.game.version.VersionGroup
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 

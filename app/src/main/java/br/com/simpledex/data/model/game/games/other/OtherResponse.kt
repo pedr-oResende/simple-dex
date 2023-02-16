@@ -10,5 +10,5 @@ import kotlinx.serialization.Serializable
 class OtherResponse(
     @SerializedName("dream_world") val dreamWorld: DreamWorldResponse?,
     @SerializedName("home") val home: HomeResponse?,
-    @SerializedName("official-artwork") val officialArtwork: OfficialArtwork?
+    @SerializedName("official-artwork") val officialArtwork: OfficialArtworkResponse?
 )

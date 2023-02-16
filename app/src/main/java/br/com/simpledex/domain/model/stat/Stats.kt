@@ -1,4 +1,4 @@
-package br.com.simpledex.domain.model.game.games.other
+package br.com.simpledex.domain.model.stat
 
 data class Stats(
     val baseStat: Int?,
