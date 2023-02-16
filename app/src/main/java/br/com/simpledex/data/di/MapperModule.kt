@@ -1,20 +1,15 @@
 package br.com.simpledex.data.di
 
+import br.com.simpledex.commom.mapper.NullableListMapper
 import br.com.simpledex.commom.mapper.NullableListMapperImpl
 import br.com.simpledex.data.mapper.ability.AbilitiesResponseToEntityMapper
 import br.com.simpledex.data.mapper.ability.AbilityResponseToEntityMapper
 import br.com.simpledex.data.mapper.form.FormsResponseToEntityMapper
 import br.com.simpledex.data.mapper.game.games.GenerationVIIResponseToEntityMapper
 import br.com.simpledex.data.mapper.game.games.UltraSunUltraMoonResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.other.OfficialArtworkResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.other.OtherResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.other.SpeciesResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.other.SpritesResponseToEntityMapper
+import br.com.simpledex.data.mapper.game.other.*
 import br.com.simpledex.data.mapper.game.other.indice.GameIndicesResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.version.VersionGroupDetailsResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.version.VersionGroupResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.version.VersionResponseToEntityMapper
-import br.com.simpledex.data.mapper.game.version.VersionsResponseToEntityMapper
+import br.com.simpledex.data.mapper.game.version.*
 import br.com.simpledex.data.mapper.icons.IconsResponseToEntityMapper
 import br.com.simpledex.data.mapper.move.MoveLearnMethodResponseToEntityMapper
 import br.com.simpledex.data.mapper.move.MoveResponseToEntityMapper
@@ -53,6 +48,23 @@ val mapperModule = module {
     single { UltraSunUltraMoonResponseToEntityMapper() }
 
     single { TypesResponseToEntityMapper() }
+
+    single { HeldItemResponseToEntityMapper() }
+
+    single {
+        VersionDetailResponseToEntityMapper(
+            versionResponseToEntityMapper = get<VersionResponseToEntityMapper>()
+        )
+    }
+
+    single {
+        HeldItemsResponseToEntityMapper(
+            heldItemResponseToEntityMapper = get<HeldItemResponseToEntityMapper>(),
+            versionDetailsResponseToEntityMapper = NullableListMapperImpl(
+                mapper = get<VersionDetailResponseToEntityMapper>()
+            )
+        )
+    }
 
     single {
         VersionGroupDetailsResponseToEntityMapper(
@@ -133,6 +145,9 @@ val mapperModule = module {
             ),
             statsResponseToEntityMapper = NullableListMapperImpl(
                 mapper = get<StatsResponseToEntityMapper>()
+            ),
+            heldItemsResponseToEntityMapper = NullableListMapperImpl(
+                mapper = get<HeldItemsResponseToEntityMapper>()
             ),
             speciesResponseToEntityMapper = get<SpeciesResponseToEntityMapper>(),
             spritesResponseToEntityMapper = get<SpritesResponseToEntityMapper>()

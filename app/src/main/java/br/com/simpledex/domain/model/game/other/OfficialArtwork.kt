@@ -1,4 +1,4 @@
-package br.com.simpledex.domain.model.game.games.other
+package br.com.simpledex.domain.model.game.other
 
 data class OfficialArtwork(
     val frontDefault: String?,

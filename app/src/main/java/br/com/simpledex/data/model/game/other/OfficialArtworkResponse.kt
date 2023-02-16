@@ -1,4 +1,4 @@
-package br.com.simpledex.data.model.game.games.other
+package br.com.simpledex.data.model.game.other
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable

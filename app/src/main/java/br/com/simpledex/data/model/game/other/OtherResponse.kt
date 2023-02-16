@@ -1,8 +1,7 @@
-package br.com.simpledex.data.model.game.games.other
+package br.com.simpledex.data.model.game.other
 
 import br.com.simpledex.data.model.game.games.DreamWorldResponse
 import br.com.simpledex.data.model.game.games.HomeResponse
-import br.com.simpledex.domain.model.game.games.other.OfficialArtwork
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 

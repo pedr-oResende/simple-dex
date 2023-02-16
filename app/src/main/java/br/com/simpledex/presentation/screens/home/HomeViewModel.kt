@@ -24,6 +24,9 @@ class HomeViewModel(
     private val _pokemonListResponse = MutableStateFlow<StateUI<Unit>>(StateUI.Idle())
     val pokemonListResponse: StateFlow<StateUI<Unit>> = _pokemonListResponse
 
+    private val _loadMoreResponse = MutableStateFlow<StateUI<Unit>>(StateUI.Idle())
+    val loadMoreResponse: StateFlow<StateUI<Unit>> = _loadMoreResponse
+
     init {
         loadPokemonList()
     }
@@ -53,7 +56,7 @@ class HomeViewModel(
 
     private fun loadPokemonList() {
         viewModelScope.launch {
-            getNationalDexUseCase().onStart {
+            getNationalDexUseCase(offset = 0).onStart {
                 _pokemonListResponse.emit(StateUI.Processing())
             }.catch {
                 _pokemonListResponse.emit(StateUI.Error(it.message.orEmpty()))
@@ -80,14 +83,31 @@ class HomeViewModel(
 
     private fun orderPokemonList() {
         homeUI.value.apply {
+            val list = pokemonList.sortedBy { it.id }.distinct()
             _homeUI.value = copy(
-                pokemonList = pokemonList.sortedBy { it.id },
-                filteredPokemonList = pokemonList.sortedBy { it.id }
+                pokemonList = list,
+                filteredPokemonList = list
             )
         }
     }
 
-    fun refresh() = loadPokemonList()
+    fun pokemonListSize() = _homeUI.value.pokemonList.size
+
+    fun loadMorePokemon() {
+        viewModelScope.launch {
+            getNationalDexUseCase(offset = pokemonListSize()).onStart {
+                _loadMoreResponse.emit(StateUI.Processing())
+            }.catch {
+                _loadMoreResponse.emit(StateUI.Error(it.message.orEmpty()))
+            }.collect {
+                it.results.forEach { pokemon ->
+                    loadPokemon(pokemon.name.orEmpty())
+                }
+                orderPokemonList()
+                _loadMoreResponse.emit(StateUI.Processed())
+            }
+        }
+    }
 
     private fun filter() {
         homeUI.value.apply {

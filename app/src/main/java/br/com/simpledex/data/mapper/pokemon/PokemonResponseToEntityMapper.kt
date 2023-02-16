@@ -5,8 +5,9 @@ import br.com.simpledex.commom.mapper.NullableListMapper
 import br.com.simpledex.data.model.ability.AbilitiesResponse
 import br.com.simpledex.data.model.form.FormsResponse
 import br.com.simpledex.data.model.game.GameIndicesResponse
-import br.com.simpledex.data.model.game.games.other.SpeciesResponse
-import br.com.simpledex.data.model.game.games.other.SpritesResponse
+import br.com.simpledex.data.model.game.other.HeldItemsResponse
+import br.com.simpledex.data.model.game.other.SpeciesResponse
+import br.com.simpledex.data.model.game.other.SpritesResponse
 import br.com.simpledex.data.model.stat.StatsResponse
 import br.com.simpledex.data.model.type.TypesResponse
 import br.com.simpledex.data.model.move.MovesResponse
@@ -14,8 +15,9 @@ import br.com.simpledex.data.model.pokemon.PokemonResponse
 import br.com.simpledex.domain.model.ability.Abilities
 import br.com.simpledex.domain.model.form.Forms
 import br.com.simpledex.domain.model.game.GameIndices
-import br.com.simpledex.domain.model.game.games.other.Species
-import br.com.simpledex.domain.model.game.games.other.Sprites
+import br.com.simpledex.domain.model.game.other.HeldItems
+import br.com.simpledex.domain.model.game.other.Species
+import br.com.simpledex.domain.model.game.other.Sprites
 import br.com.simpledex.domain.model.stat.Stats
 import br.com.simpledex.domain.model.type.Types
 import br.com.simpledex.domain.model.move.Moves
@@ -28,6 +30,7 @@ class PokemonResponseToEntityMapper(
     private val movesResponseToEntityMapper: NullableListMapper<MovesResponse, Moves>,
     private val typesResponseToEntityMapper: NullableListMapper<TypesResponse, Types>,
     private val statsResponseToEntityMapper: NullableListMapper<StatsResponse, Stats>,
+    private val heldItemsResponseToEntityMapper: NullableListMapper<HeldItemsResponse, HeldItems>,
     private val speciesResponseToEntityMapper: Mapper<SpeciesResponse, Species>,
     private val spritesResponseToEntityMapper: Mapper<SpritesResponse, Sprites>
 ) : Mapper<PokemonResponse, Pokemon> {
@@ -41,16 +44,16 @@ class PokemonResponseToEntityMapper(
             order = order,
             locationAreaEncounters = locationAreaEncounters,
             baseExperience = baseExperience,
-            heldItems = heldItems,
-            pastTypes = pastTypes,
+            heldItems = heldItemsResponseToEntityMapper.map(heldItems),
+//            pastTypes = pastTypes,
             abilities = abilitiesResponseToEntityMapper.map(abilities),
             forms = formsResponseToEntityMapper.map(forms),
             gameIndices = gameIndicesResponseToEntityMapper.map(gameIndices),
             moves = movesResponseToEntityMapper.map(moves),
             types = typesResponseToEntityMapper.map(types),
             stats = statsResponseToEntityMapper.map(stats),
-            species = if (species != null) speciesResponseToEntityMapper.map(species) else null,
-            sprites = if (sprites != null) spritesResponseToEntityMapper.map(sprites) else null
+            species = species?.let { speciesResponseToEntityMapper.map(species) },
+            sprites = sprites?.let { spritesResponseToEntityMapper.map(sprites) }
         )
     }
 }

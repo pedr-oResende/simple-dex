@@ -1,7 +1,6 @@
-package br.com.simpledex.data.model.game.games.other
+package br.com.simpledex.data.model.game.other
 
 import br.com.simpledex.data.model.game.version.VersionsResponse
-import br.com.simpledex.domain.model.game.games.other.Other
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 

@@ -1,11 +1,11 @@
 package br.com.simpledex.data.mapper.game.other
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.games.other.OtherResponse
-import br.com.simpledex.data.model.game.games.other.SpritesResponse
+import br.com.simpledex.data.model.game.other.OtherResponse
+import br.com.simpledex.data.model.game.other.SpritesResponse
 import br.com.simpledex.data.model.game.version.VersionsResponse
-import br.com.simpledex.domain.model.game.games.other.Other
-import br.com.simpledex.domain.model.game.games.other.Sprites
+import br.com.simpledex.domain.model.game.other.Other
+import br.com.simpledex.domain.model.game.other.Sprites
 import br.com.simpledex.domain.model.game.version.Versions
 
 class SpritesResponseToEntityMapper(

@@ -1,8 +1,8 @@
 package br.com.simpledex.data.mapper.game.other
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.games.other.SpeciesResponse
-import br.com.simpledex.domain.model.game.games.other.Species
+import br.com.simpledex.data.model.game.other.SpeciesResponse
+import br.com.simpledex.domain.model.game.other.Species
 
 class SpeciesResponseToEntityMapper : Mapper<SpeciesResponse, Species> {
     override fun map(input: SpeciesResponse) = input.run {

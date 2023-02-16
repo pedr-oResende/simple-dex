@@ -1,10 +1,10 @@
 package br.com.simpledex.data.mapper.game.other
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.games.other.OfficialArtworkResponse
-import br.com.simpledex.data.model.game.games.other.OtherResponse
-import br.com.simpledex.domain.model.game.games.other.OfficialArtwork
-import br.com.simpledex.domain.model.game.games.other.Other
+import br.com.simpledex.data.model.game.other.OfficialArtworkResponse
+import br.com.simpledex.data.model.game.other.OtherResponse
+import br.com.simpledex.domain.model.game.other.OfficialArtwork
+import br.com.simpledex.domain.model.game.other.Other
 
 class OtherResponseToEntityMapper(
     private val officialArtworkResponseToEntityMapper: Mapper<OfficialArtworkResponse, OfficialArtwork>
