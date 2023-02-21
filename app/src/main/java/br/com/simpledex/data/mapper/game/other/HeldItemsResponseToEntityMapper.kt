@@ -2,9 +2,9 @@ package br.com.simpledex.data.mapper.game.other
 
 import br.com.simpledex.commom.mapper.Mapper
 import br.com.simpledex.commom.mapper.NullableListMapper
-import br.com.simpledex.data.model.game.other.HeldItemResponse
-import br.com.simpledex.data.model.game.other.HeldItemsResponse
-import br.com.simpledex.data.model.game.version.VersionDetailResponse
+import br.com.simpledex.data.remote.model.game.other.HeldItemResponse
+import br.com.simpledex.data.remote.model.game.other.HeldItemsResponse
+import br.com.simpledex.data.remote.model.game.version.VersionDetailResponse
 import br.com.simpledex.domain.model.game.other.HeldItem
 import br.com.simpledex.domain.model.game.other.HeldItems
 import br.com.simpledex.domain.model.game.version.VersionDetail

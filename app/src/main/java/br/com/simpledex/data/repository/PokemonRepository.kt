@@ -2,8 +2,8 @@ package br.com.simpledex.data.repository
 
 import br.com.simpledex.commom.mapper.Mapper
 import br.com.simpledex.data.mapper.base.PagedListResponseToPagedListMapper
-import br.com.simpledex.data.model.pokemon.PokemonListResponse
-import br.com.simpledex.data.model.pokemon.PokemonResponse
+import br.com.simpledex.data.remote.model.pokemon.PokemonListResponse
+import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.data_sources.PokemonRemoteDataSource
 import br.com.simpledex.data.remote.util.apiCall
 import br.com.simpledex.domain.model.pokemon.Pokemon
@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.flow
 
 class PokemonRepositoryImpl(
     val remoteDataSource: PokemonRemoteDataSource,
-    val pokemonListResponseToEntityMapper: PagedListResponseToPagedListMapper<PokemonListResponse, PokemonList>,
-    val pokemonResponseToEntityMapper: Mapper<PokemonResponse, Pokemon>
+    val pokemonListResponseToEntityMapper: PagedListResponseToPagedListMapper<br.com.simpledex.data.remote.model.pokemon.PokemonListResponse, PokemonList>,
+    val pokemonResponseToEntityMapper: Mapper<br.com.simpledex.data.remote.model.pokemon.PokemonResponse, Pokemon>
 ) : PokemonRepository {
     override fun getPokemonList(limit: Int, offset: Int): Flow<PagedList<PokemonList>> {
         return flow {

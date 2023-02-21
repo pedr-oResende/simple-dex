@@ -1,8 +1,8 @@
 package br.com.simpledex.data.mapper.game.version
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.version.VersionDetailResponse
-import br.com.simpledex.data.model.game.version.VersionResponse
+import br.com.simpledex.data.remote.model.game.version.VersionDetailResponse
+import br.com.simpledex.data.remote.model.game.version.VersionResponse
 import br.com.simpledex.domain.model.game.version.Version
 import br.com.simpledex.domain.model.game.version.VersionDetail
 

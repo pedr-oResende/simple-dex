@@ -1,8 +1,8 @@
 package br.com.simpledex.data.mapper.ability
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.ability.AbilitiesResponse
-import br.com.simpledex.data.model.ability.AbilityResponse
+import br.com.simpledex.data.remote.model.ability.AbilitiesResponse
+import br.com.simpledex.data.remote.model.ability.AbilityResponse
 import br.com.simpledex.domain.model.ability.Abilities
 import br.com.simpledex.domain.model.ability.Ability
 

@@ -1,9 +1,9 @@
 package br.com.simpledex.data.mapper.game.games
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.games.GenerationVIIResponse
-import br.com.simpledex.data.model.game.games.UltraSunUltraMoonResponse
-import br.com.simpledex.data.model.icons.IconsResponse
+import br.com.simpledex.data.remote.model.game.games.GenerationVIIResponse
+import br.com.simpledex.data.remote.model.game.games.UltraSunUltraMoonResponse
+import br.com.simpledex.data.remote.model.icons.IconsResponse
 import br.com.simpledex.domain.model.game.games.GenerationVII
 import br.com.simpledex.domain.model.game.games.UltraSunUltraMoon
 import br.com.simpledex.domain.model.icons.Icons

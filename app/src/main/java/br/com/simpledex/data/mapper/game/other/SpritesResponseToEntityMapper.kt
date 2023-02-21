@@ -1,9 +1,9 @@
 package br.com.simpledex.data.mapper.game.other
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.game.other.OtherResponse
-import br.com.simpledex.data.model.game.other.SpritesResponse
-import br.com.simpledex.data.model.game.version.VersionsResponse
+import br.com.simpledex.data.remote.model.game.other.OtherResponse
+import br.com.simpledex.data.remote.model.game.other.SpritesResponse
+import br.com.simpledex.data.remote.model.game.version.VersionsResponse
 import br.com.simpledex.domain.model.game.other.Other
 import br.com.simpledex.domain.model.game.other.Sprites
 import br.com.simpledex.domain.model.game.version.Versions

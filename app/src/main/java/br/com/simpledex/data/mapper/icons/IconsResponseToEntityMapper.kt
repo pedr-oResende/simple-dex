@@ -1,7 +1,7 @@
 package br.com.simpledex.data.mapper.icons
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.model.icons.IconsResponse
+import br.com.simpledex.data.remote.model.icons.IconsResponse
 import br.com.simpledex.domain.model.icons.Icons
 
 class IconsResponseToEntityMapper : Mapper<IconsResponse, Icons> {
