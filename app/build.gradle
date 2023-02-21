@@ -127,4 +127,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     implementation 'org.apache.commons:commons-text:1.9'
+
+    // Splash Screen
+    implementation "androidx.core:core-splashscreen:1.0.0"
 }
