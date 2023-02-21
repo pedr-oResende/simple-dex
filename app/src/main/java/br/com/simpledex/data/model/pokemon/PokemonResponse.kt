@@ -11,6 +11,7 @@ import br.com.simpledex.data.model.game.other.SpritesResponse
 import br.com.simpledex.data.model.stat.StatsResponse
 import br.com.simpledex.data.model.type.TypesResponse
 import br.com.simpledex.data.model.move.MovesResponse
+import br.com.simpledex.data.model.type.PastTypeResponse
 import com.google.gson.annotations.SerializedName
 
 class PokemonResponse(
@@ -26,7 +27,7 @@ class PokemonResponse(
     @SerializedName("moves") val moves: List<MovesResponse>?,
     @SerializedName("name") val name: String?,
     @SerializedName("order") val order: Int?,
-//    @SerializedName("past_types") val pastTypes: List<String>?,
+    @SerializedName("past_types") val pastTypes: List<PastTypeResponse>?,
     @SerializedName("species") val species: SpeciesResponse?,
     @SerializedName("sprites") val sprites: SpritesResponse?,
     @SerializedName("types") val types: List<TypesResponse>?,

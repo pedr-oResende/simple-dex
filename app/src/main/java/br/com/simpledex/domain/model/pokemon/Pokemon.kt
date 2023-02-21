@@ -9,6 +9,7 @@ import br.com.simpledex.domain.model.game.other.Sprites
 import br.com.simpledex.domain.model.stat.Stats
 import br.com.simpledex.domain.model.type.Types
 import br.com.simpledex.domain.model.move.Moves
+import br.com.simpledex.domain.model.type.PastType
 
 data class Pokemon(
     val id: Int?,
@@ -19,7 +20,7 @@ data class Pokemon(
     val isDefault: Boolean?,
     val locationAreaEncounters: String?,
     val order: Int?,
-//    val pastTypes: List<String>?, TODO(map past_types)
+    val pastTypes: List<PastType>?,
     val weight: Int?,
     val heldItems: List<HeldItems>?,
     val abilities: List<Abilities>?,

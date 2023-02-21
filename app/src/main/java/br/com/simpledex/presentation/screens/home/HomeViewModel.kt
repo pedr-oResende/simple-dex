@@ -91,20 +91,22 @@ class HomeViewModel(
         }
     }
 
-    fun pokemonListSize() = _homeUI.value.pokemonList.size
+    private fun pokemonListSize() = _homeUI.value.pokemonList.size
 
     fun loadMorePokemon() {
-        viewModelScope.launch {
-            getNationalDexUseCase(offset = pokemonListSize()).onStart {
-                _loadMoreResponse.emit(StateUI.Processing())
-            }.catch {
-                _loadMoreResponse.emit(StateUI.Error(it.message.orEmpty()))
-            }.collect {
-                it.results.forEach { pokemon ->
-                    loadPokemon(pokemon.name.orEmpty())
+        if (_homeUI.value.isSearching.not()) {
+            viewModelScope.launch {
+                getNationalDexUseCase(offset = pokemonListSize()).onStart {
+                    _loadMoreResponse.emit(StateUI.Processing())
+                }.catch {
+                    _loadMoreResponse.emit(StateUI.Error(it.message.orEmpty()))
+                }.collect {
+                    it.results.forEach { pokemon ->
+                        loadPokemon(pokemon.name.orEmpty())
+                    }
+                    orderPokemonList()
+                    _loadMoreResponse.emit(StateUI.Processed())
                 }
-                orderPokemonList()
-                _loadMoreResponse.emit(StateUI.Processed())
             }
         }
     }
@@ -113,7 +115,7 @@ class HomeViewModel(
         homeUI.value.apply {
             _homeUI.value = copy(
                 filteredPokemonList = pokemonList
-                    .filter { filterByName(searchText) }
+                    .filter { filterByName(it.name.orEmpty()) }
             )
         }
     }

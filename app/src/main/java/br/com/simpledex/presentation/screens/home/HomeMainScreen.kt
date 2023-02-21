@@ -62,7 +62,6 @@ fun HomeMainScreen(
             modifier = Modifier
                 .padding(paddingValues = paddingValues)
                 .fillMaxSize()
-                .padding(all = 16.dp)
         ) {
             viewModel.pokemonListResponse.collectAsState().value.let { response ->
                 when (response) {
@@ -99,19 +98,23 @@ fun PokemonListScreen(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         state = state
     ) {
+        item { Spacer(modifier = Modifier) }
         items(pokemonList) { pokemon ->
             PokemonItem(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
                     .clip(MaterialTheme.shapes.large)
                     .clickable { },
                 pokemon = pokemon
             )
         }
         item {
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .height(58.dp)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(58.dp)
+            ) {
                 if (isLoading)
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }

@@ -1,6 +1,5 @@
 package br.com.simpledex.data.di
 
-import br.com.simpledex.commom.mapper.NullableListMapper
 import br.com.simpledex.commom.mapper.NullableListMapperImpl
 import br.com.simpledex.data.mapper.ability.AbilitiesResponseToEntityMapper
 import br.com.simpledex.data.mapper.ability.AbilityResponseToEntityMapper
@@ -18,6 +17,8 @@ import br.com.simpledex.data.mapper.pokemon.PokemonListResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.PokemonResponseToEntityMapper
 import br.com.simpledex.data.mapper.stat.StatResponseToEntityMapper
 import br.com.simpledex.data.mapper.stat.StatsResponseToEntityMapper
+import br.com.simpledex.data.mapper.type.GenerationResponseToEntityMapper
+import br.com.simpledex.data.mapper.type.PastTypeResponseToEntityMapper
 import br.com.simpledex.data.mapper.type.TypesResponseToEntityMapper
 import org.koin.dsl.module
 
@@ -50,6 +51,17 @@ val mapperModule = module {
     single { TypesResponseToEntityMapper() }
 
     single { HeldItemResponseToEntityMapper() }
+
+    single { GenerationResponseToEntityMapper() }
+
+    single {
+        PastTypeResponseToEntityMapper(
+            generationResponseToEntityMapper = get<GenerationResponseToEntityMapper>(),
+            typesResponseToEntityMapper = NullableListMapperImpl(
+                mapper = get<TypesResponseToEntityMapper>()
+            )
+        )
+    }
 
     single {
         VersionDetailResponseToEntityMapper(
@@ -148,6 +160,9 @@ val mapperModule = module {
             ),
             heldItemsResponseToEntityMapper = NullableListMapperImpl(
                 mapper = get<HeldItemsResponseToEntityMapper>()
+            ),
+            pastTypesResponseToEntityMapper = NullableListMapperImpl(
+                mapper = get<PastTypeResponseToEntityMapper>()
             ),
             speciesResponseToEntityMapper = get<SpeciesResponseToEntityMapper>(),
             spritesResponseToEntityMapper = get<SpritesResponseToEntityMapper>()
