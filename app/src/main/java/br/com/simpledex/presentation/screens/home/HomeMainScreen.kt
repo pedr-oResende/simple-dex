@@ -96,14 +96,13 @@ fun PokemonListScreen(
         loadMorePokemon()
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        state = state
+        state = state,
+        contentPadding = PaddingValues(16.dp)
     ) {
-        item { Spacer(modifier = Modifier) }
         items(pokemonList) { pokemon ->
             PokemonItem(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
                     .clip(MaterialTheme.shapes.large)
                     .clickable { },
                 pokemon = pokemon
