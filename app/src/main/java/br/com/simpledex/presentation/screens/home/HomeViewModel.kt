@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.simpledex.commom.extension.containsIgnoringAccent
 import br.com.simpledex.domain.use_case.GetNationalDexUseCase
 import br.com.simpledex.domain.use_case.GetPokemonByNameUseCase
+import br.com.simpledex.domain.use_case.GetPokemonFromLocalUseCase
 import br.com.simpledex.presentation.model.StateUI
 import br.com.simpledex.presentation.screens.home.ui.HomeEvents
 import br.com.simpledex.presentation.screens.home.ui.HomeUI
@@ -15,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getNationalDexUseCase: GetNationalDexUseCase,
-    private val getPokemonByNameUseCase: GetPokemonByNameUseCase
+    private val getPokemonByNameUseCase: GetPokemonByNameUseCase,
+    private val getPokemonFromLocalUseCase: GetPokemonFromLocalUseCase
 ) : ViewModel() {
 
     private val _homeUI = mutableStateOf(HomeUI())
@@ -28,7 +30,7 @@ class HomeViewModel(
     val loadMoreResponse: StateFlow<StateUI<Unit>> = _loadMoreResponse
 
     init {
-        loadPokemonList()
+        setupPokemonList()
     }
 
     fun onEvent(event: HomeEvents) {
@@ -54,16 +56,17 @@ class HomeViewModel(
         }
     }
 
-    private fun loadPokemonList() {
+    private fun setupPokemonList() {
         viewModelScope.launch {
-            getNationalDexUseCase(offset = 0).onStart {
+            getPokemonFromLocalUseCase().onStart {
                 _pokemonListResponse.emit(StateUI.Processing())
             }.catch {
                 _pokemonListResponse.emit(StateUI.Error(it.message.orEmpty()))
             }.collect {
-                it.results.forEach { pokemon ->
-                    loadPokemon(pokemon.name.orEmpty())
-                }
+                _homeUI.value = homeUI.value.copy(
+                    pokemonList = it,
+                    filteredPokemonList = it
+                )
                 orderPokemonList()
                 _pokemonListResponse.emit(StateUI.Processed())
             }

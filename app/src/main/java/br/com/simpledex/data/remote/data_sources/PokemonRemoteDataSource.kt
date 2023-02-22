@@ -6,10 +6,10 @@ import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 
 interface PokemonRemoteDataSource {
 
-    suspend fun getPokemonList(limit: Int, offset: Int): br.com.simpledex.data.remote.model.base.PagedListResponse<br.com.simpledex.data.remote.model.pokemon.PokemonListResponse>
+    suspend fun getPokemonList(limit: Int, offset: Int): PagedListResponse<PokemonListResponse>
 
-    suspend fun getPokemonById(id: Int): br.com.simpledex.data.remote.model.pokemon.PokemonResponse
+    suspend fun getPokemonById(id: Int): PokemonResponse
 
-    suspend fun getPokemonByName(name: String): br.com.simpledex.data.remote.model.pokemon.PokemonResponse
+    suspend fun getPokemonByName(name: String): PokemonResponse
 
 }

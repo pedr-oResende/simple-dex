@@ -18,6 +18,7 @@ buildscript {
         koin_compose = '3.1.5'
         retrofit_version = '2.9.0'
         okhttp_version = '4.10.0'
+        room_version = '2.5.0'
     }
     repositories {
         google()

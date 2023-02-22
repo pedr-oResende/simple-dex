@@ -14,16 +14,16 @@ interface PokemonService {
     suspend fun getPokemonList(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-    ) : Response<br.com.simpledex.data.remote.model.base.PagedListResponse<br.com.simpledex.data.remote.model.pokemon.PokemonListResponse>>
+    ) : Response<PagedListResponse<PokemonListResponse>>
 
     @GET("api/v2/pokemon/{id}")
     suspend fun getPokemonById(
         @Path("id") id: Int
-    ) : Response<br.com.simpledex.data.remote.model.pokemon.PokemonResponse>
+    ) : Response<PokemonResponse>
 
     @GET("api/v2/pokemon/{name}")
     suspend fun getPokemonByName(
         @Path("name") name: String
-    ) : Response<br.com.simpledex.data.remote.model.pokemon.PokemonResponse>
+    ) : Response<PokemonResponse>
 
 }

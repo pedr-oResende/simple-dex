@@ -15,6 +15,8 @@ import br.com.simpledex.data.mapper.move.MoveResponseToEntityMapper
 import br.com.simpledex.data.mapper.move.MovesResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.PokemonListResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.PokemonResponseToEntityMapper
+import br.com.simpledex.data.mapper.pokemon.LocalPokemonToEntityMapper
+import br.com.simpledex.data.mapper.pokemon.PokemonToLocalEntityMapper
 import br.com.simpledex.data.mapper.stat.StatResponseToEntityMapper
 import br.com.simpledex.data.mapper.stat.StatsResponseToEntityMapper
 import br.com.simpledex.data.mapper.type.GenerationResponseToEntityMapper
@@ -53,6 +55,10 @@ val mapperModule = module {
     single { HeldItemResponseToEntityMapper() }
 
     single { GenerationResponseToEntityMapper() }
+
+    single { PokemonToLocalEntityMapper() }
+
+    single { LocalPokemonToEntityMapper() }
 
     single {
         PastTypeResponseToEntityMapper(

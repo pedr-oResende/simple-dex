@@ -1,8 +1,6 @@
 package br.com.simpledex.domain.di
 
-import br.com.simpledex.domain.use_case.GetNationalDexUseCase
-import br.com.simpledex.domain.use_case.GetPokemonByIdUseCase
-import br.com.simpledex.domain.use_case.GetPokemonByNameUseCase
+import br.com.simpledex.domain.use_case.*
 import org.koin.dsl.module
 
 val useCaseModule = module {
@@ -12,5 +10,9 @@ val useCaseModule = module {
     single { GetPokemonByNameUseCase(get()) }
 
     single { GetNationalDexUseCase(get()) }
+
+    single { GetPokemonNameFromLocalUseCase(get()) }
+
+    single { GetPokemonFromLocalUseCase(get()) }
 
 }
