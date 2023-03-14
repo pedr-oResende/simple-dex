@@ -82,7 +82,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
     // Material 3
-    implementation "androidx.compose.material3:material3:1.1.0-alpha06"
+    implementation "androidx.compose.material3:material3:1.1.0-alpha08"
 
     // Tests
     testImplementation 'junit:junit:4.13.2'
