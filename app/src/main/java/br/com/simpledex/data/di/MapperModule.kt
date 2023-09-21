@@ -10,6 +10,7 @@ import br.com.simpledex.data.mapper.game.other.indice.GameIndicesResponseToEntit
 import br.com.simpledex.data.mapper.game.version.*
 import br.com.simpledex.data.mapper.icons.IconsResponseToEntityMapper
 import br.com.simpledex.data.mapper.move.MovesResponseToEntityMapper
+import br.com.simpledex.data.mapper.pokedex.PokedexResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.*
 import br.com.simpledex.data.mapper.stat.StatsResponseToEntityMapper
 import br.com.simpledex.data.mapper.type.PastTypeResponseToEntityMapper
@@ -143,6 +144,14 @@ val mapperModule = module {
             ),
             speciesResponseToEntityMapper = get<ListItemResponseToEntityMapper>(),
             spritesResponseToEntityMapper = get<SpritesResponseToEntityMapper>()
+        )
+    }
+
+    single {
+        PokedexResponseToEntityMapper(
+            pokemonEntriesResponseToListMapper = NullableListMapperImpl(
+                mapper = get<ListItemResponseToEntityMapper>()
+            )
         )
     }
 

@@ -1,10 +1,9 @@
-package br.com.simpledex.data.remote.data_sources
+package br.com.simpledex.data.remote.data_sources.pokemon
 
 import br.com.simpledex.data.remote.model.base.PagedListResponse
 import br.com.simpledex.data.remote.model.commom.ListItemResponse
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.service.PokemonService
-import br.com.simpledex.domain.model.commom.ListItem
 import retrofit2.HttpException
 
 class PokemonRemoteDataSourceImpl(

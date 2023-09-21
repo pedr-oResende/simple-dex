@@ -6,7 +6,7 @@ import br.com.simpledex.data.local.data_sources.PokemonLocalDataSource
 import br.com.simpledex.data.local.model.PokemonTable
 import br.com.simpledex.data.mapper.base.PagedListResponseToPagedListMapper
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
-import br.com.simpledex.data.remote.data_sources.PokemonRemoteDataSource
+import br.com.simpledex.data.remote.data_sources.pokemon.PokemonRemoteDataSource
 import br.com.simpledex.data.remote.model.commom.ListItemResponse
 import br.com.simpledex.data.remote.util.apiCall
 import br.com.simpledex.domain.model.pokemon.Pokemon

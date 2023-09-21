@@ -26,9 +26,4 @@ interface PokemonService {
         @Path("name") name: String
     ) : Response<PokemonResponse>
 
-    suspend fun getPokedexList(
-        @Query("limit") limit: Int,
-        @Query("offset") offset: Int
-    ) : Response<PagedListResponse<ListItemResponse>>
-
 }

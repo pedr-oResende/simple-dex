@@ -1,4 +1,4 @@
-package br.com.simpledex.data.remote.data_sources
+package br.com.simpledex.data.remote.data_sources.pokemon
 
 import br.com.simpledex.data.remote.model.base.PagedListResponse
 import br.com.simpledex.data.remote.model.commom.ListItemResponse

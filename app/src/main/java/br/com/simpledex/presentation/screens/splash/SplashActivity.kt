@@ -7,9 +7,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
-import br.com.simpledex.domain.use_case.GetNationalDexUseCase
-import br.com.simpledex.domain.use_case.GetPokemonByNameUseCase
-import br.com.simpledex.domain.use_case.GetPokemonNameFromLocalUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetNationalDexUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetPokemonByNameUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetPokemonNameFromLocalUseCase
 import br.com.simpledex.presentation.MainActivity
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject

@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.simpledex.commom.extension.containsIgnoringAccent
-import br.com.simpledex.domain.use_case.GetNationalDexUseCase
-import br.com.simpledex.domain.use_case.GetPokemonByNameUseCase
-import br.com.simpledex.domain.use_case.GetPokemonFromLocalUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetNationalDexUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetPokemonByNameUseCase
+import br.com.simpledex.domain.use_case.pokemon.GetPokemonFromLocalUseCase
 import br.com.simpledex.presentation.model.StateUI
 import br.com.simpledex.presentation.screens.home.ui.HomeEvents
 import br.com.simpledex.presentation.screens.home.ui.HomeUI

@@ -1,4 +1,4 @@
-package br.com.simpledex.domain.use_case
+package br.com.simpledex.domain.use_case.pokemon
 
 import br.com.simpledex.domain.model.base.PagedList
 import br.com.simpledex.domain.model.commom.ListItem
