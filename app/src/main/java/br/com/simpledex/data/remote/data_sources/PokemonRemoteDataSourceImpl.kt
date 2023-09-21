@@ -1,15 +1,16 @@
 package br.com.simpledex.data.remote.data_sources
 
 import br.com.simpledex.data.remote.model.base.PagedListResponse
-import br.com.simpledex.data.remote.model.pokemon.PokemonListResponse
+import br.com.simpledex.data.remote.model.commom.ListItemResponse
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.service.PokemonService
+import br.com.simpledex.domain.model.commom.ListItem
 import retrofit2.HttpException
 
 class PokemonRemoteDataSourceImpl(
     private val service: PokemonService
 ) : PokemonRemoteDataSource {
-    override suspend fun getPokemonList(limit: Int, offset: Int): PagedListResponse<PokemonListResponse> {
+    override suspend fun getPokemonList(limit: Int, offset: Int): PagedListResponse<ListItemResponse> {
         val response = service.getPokemonList(limit, offset)
         if (response.isSuccessful) {
             return response.body()!!

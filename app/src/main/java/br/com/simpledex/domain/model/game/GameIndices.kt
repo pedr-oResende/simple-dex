@@ -1,8 +1,8 @@
 package br.com.simpledex.domain.model.game
 
-import br.com.simpledex.domain.model.game.version.Version
+import br.com.simpledex.domain.model.commom.ListItem
 
 class GameIndices(
     val gameIndex: Int?,
-    val version: Version?
+    val version: ListItem?
 )

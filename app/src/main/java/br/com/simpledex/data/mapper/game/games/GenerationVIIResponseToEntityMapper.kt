@@ -10,7 +10,7 @@ import br.com.simpledex.domain.model.icons.Icons
 
 class GenerationVIIResponseToEntityMapper(
     private val ultraSunUltraMoonResponseToEntityMapper: Mapper<UltraSunUltraMoonResponse, UltraSunUltraMoon>,
-    private val iconsResponseToEntityMapper: Mapper<IconsResponse, Icons>,
+    private val iconsResponseToEntityMapper: Mapper<IconsResponse, Icons>
 ) : Mapper<GenerationVIIResponse, GenerationVII> {
     override fun map(input: GenerationVIIResponse) = input.run {
         GenerationVII(

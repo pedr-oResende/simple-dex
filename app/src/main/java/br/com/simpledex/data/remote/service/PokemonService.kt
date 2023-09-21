@@ -1,7 +1,7 @@
 package br.com.simpledex.data.remote.service
 
 import br.com.simpledex.data.remote.model.base.PagedListResponse
-import br.com.simpledex.data.remote.model.pokemon.PokemonListResponse
+import br.com.simpledex.data.remote.model.commom.ListItemResponse
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,7 +14,7 @@ interface PokemonService {
     suspend fun getPokemonList(
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
-    ) : Response<PagedListResponse<PokemonListResponse>>
+    ) : Response<PagedListResponse<ListItemResponse>>
 
     @GET("/api/v2/pokemon/{id}")
     suspend fun getPokemonById(
@@ -25,5 +25,10 @@ interface PokemonService {
     suspend fun getPokemonByName(
         @Path("name") name: String
     ) : Response<PokemonResponse>
+
+    suspend fun getPokedexList(
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
+    ) : Response<PagedListResponse<ListItemResponse>>
 
 }
