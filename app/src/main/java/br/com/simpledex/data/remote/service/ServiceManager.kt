@@ -8,33 +8,31 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-internal class ServiceManager(baseUrl: String) {
+internal class ServiceManager {
 
     private val retrofit: Retrofit
+        get() {
+            val logging = HttpLoggingInterceptor()
+            logging.level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
 
-    init {
-
-        val logging = HttpLoggingInterceptor()
-        logging.level = if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor.Level.BODY
-        } else {
-            HttpLoggingInterceptor.Level.NONE
+            return Retrofit.Builder()
+                .baseUrl(API.baseUrl)
+                .client(
+                    OkHttpClient.Builder()
+                        .connectTimeout(30, TimeUnit.SECONDS)
+                        .readTimeout(30, TimeUnit.SECONDS)
+                        .writeTimeout(30, TimeUnit.SECONDS)
+                        .addInterceptor(logging)
+                        .build()
+                )
+                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(ToStringConverterFactory())
+                .build()
         }
-
-        retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .client(
-                OkHttpClient.Builder()
-                    .connectTimeout(30, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
-                    .writeTimeout(30, TimeUnit.SECONDS)
-                    .addInterceptor(logging)
-                    .build()
-            )
-            .addConverterFactory(GsonConverterFactory.create())
-            .addConverterFactory(ToStringConverterFactory())
-            .build()
-    }
 
     fun <T> create(cls: Class<T>): T = retrofit.create(cls)
 }

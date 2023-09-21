@@ -63,10 +63,7 @@ class HomeViewModel(
             }.catch {
                 _pokemonListResponse.emit(StateUI.Error(it.message.orEmpty()))
             }.collect {
-                _homeUI.value = homeUI.value.copy(
-                    pokemonList = it,
-                    filteredPokemonList = it
-                )
+                _homeUI.value = homeUI.value.copy(pokemonList = it, filteredPokemonList = it)
                 orderPokemonList()
                 _pokemonListResponse.emit(StateUI.Processed())
             }
