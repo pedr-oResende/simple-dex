@@ -1,5 +1,6 @@
 package br.com.simpledex.presentation.screens.home
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.simpledex.commom.extension.isScrolledToTheEnd
 import br.com.simpledex.domain.model.pokemon.Pokemon
+import br.com.simpledex.presentation.compose.animation.FadeAnimation
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
 import br.com.simpledex.presentation.compose.widgets.top_bar.*
@@ -30,14 +32,15 @@ fun HomeMainScreen(
     val homeUI = viewModel.homeUI.value
     Scaffold(
         topBar = {
-            if (homeUI.isSearching) {
+            FadeAnimation(visible = homeUI.isSearching) {
                 SearchTopBar(
                     searchText = homeUI.searchText,
                     placeholderText = "Nome do pokémon",
                     onClearClick = { viewModel.onEvent(HomeEvents.CloseSearchBar) },
                     onSearchTextChanged = { viewModel.onEvent(HomeEvents.SearchTextChanged(it)) }
                 )
-            } else {
+            }
+            FadeAnimation(visible = !homeUI.isSearching) {
                 TopBar(
                     title = "National dex",
                     actions = {
