@@ -1,4 +1,4 @@
-package br.com.simpledex.presentation.screens.home
+package br.com.simpledex.presentation.screens.pokedex
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -9,19 +9,19 @@ import br.com.simpledex.domain.use_case.pokemon.GetNationalDexUseCase
 import br.com.simpledex.domain.use_case.pokemon.GetPokemonByNameUseCase
 import br.com.simpledex.domain.use_case.pokemon.GetPokemonFromLocalUseCase
 import br.com.simpledex.presentation.model.StateUI
-import br.com.simpledex.presentation.screens.home.ui.HomeEvents
-import br.com.simpledex.presentation.screens.home.ui.HomeUI
+import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
+import br.com.simpledex.presentation.screens.pokedex.ui.PokedexUI
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-class HomeViewModel(
+class PokedexViewModel(
     private val getNationalDexUseCase: GetNationalDexUseCase,
     private val getPokemonByNameUseCase: GetPokemonByNameUseCase,
     private val getPokemonFromLocalUseCase: GetPokemonFromLocalUseCase
 ) : ViewModel() {
 
-    private val _homeUI = mutableStateOf(HomeUI())
-    val homeUI: State<HomeUI> = _homeUI
+    private val _homeUI = mutableStateOf(PokedexUI())
+    val homeUI: State<PokedexUI> = _homeUI
 
     private val _pokemonListResponse = MutableStateFlow<StateUI<Unit>>(StateUI.Idle())
     val pokemonListResponse: StateFlow<StateUI<Unit>> = _pokemonListResponse
@@ -33,21 +33,21 @@ class HomeViewModel(
         setupPokemonList()
     }
 
-    fun onEvent(event: HomeEvents) {
+    fun onEvent(event: PokedexEvents) {
         when (event) {
-            is HomeEvents.CloseSearchBar -> {
+            is PokedexEvents.CloseSearchBar -> {
                 _homeUI.value = homeUI.value.copy(
                     isSearching = false,
                     searchText = ""
                 )
                 filter()
             }
-            is HomeEvents.OpenSearchBar -> {
+            is PokedexEvents.OpenSearchBar -> {
                 _homeUI.value = homeUI.value.copy(
                     isSearching = true
                 )
             }
-            is HomeEvents.SearchTextChanged -> {
+            is PokedexEvents.SearchTextChanged -> {
                 _homeUI.value = homeUI.value.copy(
                     searchText = event.text
                 )

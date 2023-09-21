@@ -1,4 +1,4 @@
-package br.com.simpledex.presentation.screens.home
+package br.com.simpledex.presentation.screens.pokedex
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

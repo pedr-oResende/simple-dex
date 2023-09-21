@@ -9,7 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import br.com.simpledex.data.remote.util.preferences.PreferencesWrapper
 import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
-import br.com.simpledex.presentation.screens.main.NavHostScreen
+import br.com.simpledex.presentation.screens.nav_host.NavHostScreen
 
 class MainActivity : ComponentActivity() {
 

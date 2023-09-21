@@ -5,7 +5,7 @@ import androidx.activity.OnBackPressedDispatcher
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import br.com.simpledex.presentation.screens.home.HomeMainScreen
+import br.com.simpledex.presentation.screens.pokedex.HomeMainScreen
 
 fun NavGraphBuilder.home(
     navHostController: NavHostController

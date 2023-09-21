@@ -18,9 +18,7 @@ import org.koin.android.ext.android.inject
 class SplashActivity : ComponentActivity() {
 
     private val getNationalDexUseCase: GetNationalDexUseCase by inject()
-
     private val getPokemonByNameUseCase: GetPokemonByNameUseCase by inject()
-
     private val getPokemonFromLocalUseCase: GetPokemonNameFromLocalUseCase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {

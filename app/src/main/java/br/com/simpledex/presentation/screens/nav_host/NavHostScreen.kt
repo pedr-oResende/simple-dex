@@ -1,4 +1,4 @@
-package br.com.simpledex.presentation.screens.main
+package br.com.simpledex.presentation.screens.nav_host
 
 import androidx.activity.OnBackPressedDispatcher
 import androidx.compose.foundation.layout.fillMaxSize

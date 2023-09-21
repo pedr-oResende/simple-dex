@@ -1,4 +1,4 @@
-package br.com.simpledex.presentation.screens.home
+package br.com.simpledex.presentation.screens.pokedex
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,13 +20,13 @@ import br.com.simpledex.presentation.compose.components.state.error.DefaultError
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
 import br.com.simpledex.presentation.compose.widgets.top_bar.*
 import br.com.simpledex.presentation.model.StateUI
-import br.com.simpledex.presentation.screens.home.ui.HomeEvents
+import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun HomeMainScreen(
     navHostController: NavHostController,
-    viewModel: HomeViewModel = getViewModel()
+    viewModel: PokedexViewModel = getViewModel()
 ) {
     val homeUI = viewModel.homeUI.value
     Scaffold(
@@ -35,8 +35,8 @@ fun HomeMainScreen(
                 SearchTopBar(
                     searchText = homeUI.searchText,
                     placeholderText = "Nome do pokémon",
-                    onClearClick = { viewModel.onEvent(HomeEvents.CloseSearchBar) },
-                    onSearchTextChanged = { viewModel.onEvent(HomeEvents.SearchTextChanged(it)) }
+                    onClearClick = { viewModel.onEvent(PokedexEvents.CloseSearchBar) },
+                    onSearchTextChanged = { viewModel.onEvent(PokedexEvents.SearchTextChanged(it)) }
                 )
             }
             FadeAnimation(visible = !homeUI.isSearching) {
@@ -44,7 +44,7 @@ fun HomeMainScreen(
                     title = "National dex",
                     actions = {
                         TopBarIcon(
-                            onClick = { viewModel.onEvent(HomeEvents.OpenSearchBar) },
+                            onClick = { viewModel.onEvent(PokedexEvents.OpenSearchBar) },
                             imageVector = Icons.Default.Search
                         )
                     }
@@ -62,7 +62,7 @@ fun HomeMainScreen(
                     is StateUI.Error -> DefaultErrorScreen(message = response.message)
                     is StateUI.Idle -> Unit
                     is StateUI.Processed -> {
-                        PokemonListScreen(
+                        PokedexMainScreen(
                             navHostController = navHostController,
                             pokemonList = homeUI.filteredPokemonList,
                             isLoading = viewModel.loadMoreResponse.collectAsState().value.loading(),
@@ -79,7 +79,7 @@ fun HomeMainScreen(
 }
 
 @Composable
-fun PokemonListScreen(
+fun PokedexMainScreen(
     navHostController: NavHostController,
     pokemonList: List<Pokemon>,
     isLoading: Boolean,
