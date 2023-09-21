@@ -2,15 +2,10 @@ package br.com.simpledex.presentation.screens.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -22,14 +17,11 @@ import br.com.simpledex.commom.extension.isScrolledToTheEnd
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
-import br.com.simpledex.presentation.compose.widgets.top_bar.SearchTopBar
-import br.com.simpledex.presentation.compose.widgets.top_bar.TopBar
-import br.com.simpledex.presentation.compose.widgets.top_bar.TopBarIcon
+import br.com.simpledex.presentation.compose.widgets.top_bar.*
 import br.com.simpledex.presentation.model.StateUI
 import br.com.simpledex.presentation.screens.home.ui.HomeEvents
 import org.koin.androidx.compose.getViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeMainScreen(
     navHostController: NavHostController,
