@@ -16,7 +16,7 @@ val viewModelModule = module {
     viewModel { (id: Int) ->
         PokedexViewModel(
             getPokedexUseCase = get(),
-            getPokemonByNameUseCase = get(),
+            getPokemonByIdUseCase = get(),
             id = id
         )
     }

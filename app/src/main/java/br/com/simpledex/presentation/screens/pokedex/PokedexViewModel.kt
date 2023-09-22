@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.simpledex.commom.extension.containsIgnoringAccent
+import br.com.simpledex.commom.extension.idFromUrl
 import br.com.simpledex.domain.model.pokemon.Pokemon
-import br.com.simpledex.domain.use_case.pokemon.GetPokedexUseCase
-import br.com.simpledex.domain.use_case.pokemon.GetPokemonByNameUseCase
+import br.com.simpledex.domain.use_case.pokemon.*
 import br.com.simpledex.presentation.model.StateUI
 import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 import br.com.simpledex.presentation.screens.pokedex.ui.PokedexUI
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 class PokedexViewModel(
     private val getPokedexUseCase: GetPokedexUseCase,
-    private val getPokemonByNameUseCase: GetPokemonByNameUseCase,
+    private val getPokemonByIdUseCase: GetPokemonByIdUseCase,
     id: Int
 ) : ViewModel() {
 
@@ -103,7 +103,7 @@ class PokedexViewModel(
             _pokedexUI.value.pokedex?.pokemonEntries?.subList(offset, offset + limit) ?: emptyList()
         val loadedPokemons = mutableListOf<Pokemon>()
         subList.forEach { pokedexEntry ->
-            getPokemonByNameUseCase(name = pokedexEntry.pokemon?.name.orEmpty()).collect { pokemon ->
+            getPokemonByIdUseCase(id = pokedexEntry.pokemon?.url?.idFromUrl() ?: 0).collect { pokemon ->
                 loadedPokemons.add(pokemon)
             }
             if (pokedexEntry == subList.last()) {
