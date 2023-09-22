@@ -116,7 +116,9 @@ class PokedexViewModel(
         }
     }
 
-
+    fun isAllPokemonsLoaded(): Boolean {
+        return (_pokedexUI.value.pokedex?.pokemonEntries?.size ?: 0) == (_pokedexUI.value.pokemonList.size)
+    }
 
     private fun filter() {
         pokedexUI.value.apply {

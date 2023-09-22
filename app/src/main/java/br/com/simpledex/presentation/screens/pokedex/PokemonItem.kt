@@ -1,38 +1,53 @@
 package br.com.simpledex.presentation.screens.pokedex
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.simpledex.domain.model.pokemon.Pokemon
+import br.com.simpledex.commom.extension.isColorDark
+import br.com.simpledex.domain.model.pokemon.dummyPokemons
+import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
+import br.com.simpledex.presentation.model.PokemonType
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun PokemonItem(
     modifier: Modifier = Modifier,
-    pokemon: Pokemon
+    name: String?,
+    types: List<PokemonType>?,
+    sprite: String?,
+    onCLick: () -> Unit
 ) {
-    val typesColor = pokemon.types?.map { it.type?.color!! }.orEmpty()
-    val background = if (typesColor.size > 1)
-        modifier.background(brush = Brush.horizontalGradient(colors = typesColor, tileMode = TileMode.Decal, startX = 0.8f))
-    else
-        modifier.background(color = typesColor.first())
+    val typesColor = types?.map { it.color } ?: emptyList()
+    val background =
+        modifier
+            .fillMaxWidth()
+            .clip(MaterialTheme.shapes.large)
+            .clickable {
+                onCLick()
+            }
+            .background(
+                brush = if (typesColor.size > 1) Brush.horizontalGradient(
+                    colors = typesColor,
+                    tileMode = TileMode.Decal
+                ) else
+                    SolidColor(typesColor.first())
+            )
+
     Row(
-        modifier = background.padding(all = 4.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier = background.padding(vertical = 4.dp, horizontal = 16.dp).fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Start
     ) {
-        pokemon.sprites?.frontDefault?.let { sprite ->
+        sprite?.let { sprite ->
             Image(
                 modifier = Modifier
                     .size(50.dp)
@@ -42,9 +57,27 @@ fun PokemonItem(
             )
         }
         Text(
-            modifier = Modifier.padding(start = 8.dp), 
-            text = pokemon.name.orEmpty(),
-            color = contentColorFor(backgroundColor = typesColor.first())
+            modifier = Modifier.padding(start = 8.dp),
+            text = name.orEmpty(),
+            color = if (types?.first()?.isColorDark() == true) {
+                MaterialTheme.colorScheme.surface
+            } else {
+                MaterialTheme.colorScheme.onSurface
+            }
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PokemonItemPrev() {
+    SimpleDexTheme {
+        val pokemon = dummyPokemons.first()
+        PokemonItem(
+            name = pokemon.name,
+            types = pokemon.types?.map { it.type ?: PokemonType.NONE },
+            sprite = pokemon.sprites?.frontDefault,
+            onCLick = {}
         )
     }
 }
