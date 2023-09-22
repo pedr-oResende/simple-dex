@@ -20,11 +20,9 @@ import kotlinx.coroutines.flow.flow
 class PokemonRepositoryImpl(
     val remoteDataSource: PokemonRemoteDataSource,
     val localDataSource: PokemonLocalDataSource,
-    val pokemonListResponseToEntityMapper: PagedListResponseToPagedListMapper<ListItemResponse, ListItem>,
     val pokemonResponseToEntityMapper: Mapper<PokemonResponse, Pokemon>,
     val localPokemonToEntityMapper: Mapper<PokemonTable, Pokemon>,
-    val pokemonToLocalEntityMapper: Mapper<Pokemon, PokemonTable>,
-    private val pokedexResponseToEntityMapper: Mapper<PokedexResponse, Pokedex>
+    val pokemonToLocalEntityMapper: Mapper<Pokemon, PokemonTable>
 ) : PokemonRepository {
 
     override fun getPokemonById(id: Int): Flow<Pokemon> {

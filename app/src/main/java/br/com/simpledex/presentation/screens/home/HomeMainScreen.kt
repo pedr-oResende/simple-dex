@@ -8,6 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import br.com.simpledex.commom.extension.idFromUrl
 import br.com.simpledex.domain.model.commom.ListItem
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
@@ -38,8 +39,8 @@ fun HomeMainScreen(
                     is StateUI.Processed -> {
                         HomeScreen(
                             pokedexList = response.data,
-                            onItemClick = { name ->
-                                navHostController.navigate(Screens.Pokedex.routeWithArgument(name))
+                            onItemClick = { id ->
+                                navHostController.navigate(Screens.Pokedex.routeWithArgument(id))
                             }
                         )
                     }
@@ -53,21 +54,20 @@ fun HomeMainScreen(
 @Composable
 fun HomeScreen(
     pokedexList: List<ListItem>,
-    onItemClick: (name: String) -> Unit
+    onItemClick: (id: Int) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
-
     ) {
         items(pokedexList) { pokedex ->
             PokedexItem(
                 modifier = Modifier.fillMaxSize(),
                 name = pokedex.name,
                 onClick = {
-                    onItemClick(pokedex.name)
+                    onItemClick(pokedex.url.idFromUrl())
                 }
             )
         }

@@ -32,7 +32,7 @@ fun PokemonItem(
         modifier = background.padding(all = 4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        pokemon.sprites?.versions?.generationVII?.icons?.frontDefault?.let { sprite ->
+        pokemon.sprites?.frontDefault?.let { sprite ->
             Image(
                 modifier = Modifier
                     .size(50.dp)

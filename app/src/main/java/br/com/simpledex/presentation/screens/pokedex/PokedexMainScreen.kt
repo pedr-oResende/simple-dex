@@ -18,15 +18,19 @@ import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.presentation.compose.animation.FadeAnimation
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
+import br.com.simpledex.presentation.compose.navigation.Screens
 import br.com.simpledex.presentation.compose.widgets.top_bar.*
 import br.com.simpledex.presentation.model.StateUI
 import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun PokedexMainScreen(
     navHostController: NavHostController,
-    viewModel: PokedexViewModel = getViewModel()
+    viewModel: PokedexViewModel = getViewModel {
+        parametersOf(navHostController.currentBackStackEntry?.arguments?.getString(Screens.Pokedex.argumentKey)?.toInt() ?: 0)
+    }
 ) {
     val homeUI = viewModel.pokedexUI.value
     Scaffold(
@@ -66,7 +70,7 @@ fun PokedexMainScreen(
                         PokedexScreen(
                             navHostController = navHostController,
                             pokemonList = homeUI.filteredPokemonList,
-                            isLoading = viewModel.loadMoreResponse.collectAsState().value.loading(),
+                            isLoading = viewModel.loadMoreState.collectAsState().value.loading(),
                             loadMorePokemon = {
                                 viewModel.loadMorePokemon()
                             }

@@ -9,3 +9,7 @@ fun CharSequence.containsIgnoringAccent(
     val normalizedString = StringUtils.stripAccents(this.toString()).lowercase()
     return normalizedString.contains(other, ignoreCase = ignoreCase)
 }
+
+fun String.idFromUrl(): Int {
+    return this.split("/").last { it.isNotBlank() }.toInt()
+}

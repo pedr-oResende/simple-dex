@@ -22,11 +22,6 @@ val repositoryModule = module {
         PokemonRepositoryImpl(
             remoteDataSource = PokemonRemoteDataSourceImpl(get()),
             localDataSource = PokemonLocalDataSourceImpl(get()),
-            pokemonListResponseToEntityMapper = PagedListResponseToPagedListMapper(
-                listMapper = NullableListMapperImpl(
-                    mapper = get<ListItemResponseToEntityMapper>()
-                )
-            ),
             pokemonResponseToEntityMapper = get<PokemonResponseToEntityMapper>(),
             pokemonToLocalEntityMapper = get<PokemonToLocalEntityMapper>(),
             localPokemonToEntityMapper = get<LocalPokemonToEntityMapper>()

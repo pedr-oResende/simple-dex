@@ -8,7 +8,7 @@ class GetPokedexListUseCase(
     private val repository: PokedexRepository
 ) {
 
-    operator fun invoke(limit: Int = 30, offset: Int = 0): Flow<List<ListItem>> {
+    operator fun invoke(limit: Int = 40, offset: Int = 0): Flow<List<ListItem>> {
         return repository.getPokedexList(limit, offset)
     }
 

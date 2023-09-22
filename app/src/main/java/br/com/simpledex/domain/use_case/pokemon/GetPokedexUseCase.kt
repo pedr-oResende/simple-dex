@@ -1,14 +1,13 @@
 package br.com.simpledex.domain.use_case.pokemon
 
-import br.com.simpledex.domain.model.base.PagedList
-import br.com.simpledex.domain.model.commom.ListItem
-import br.com.simpledex.domain.repository.PokemonRepository
+import br.com.simpledex.domain.model.pokedex.Pokedex
+import br.com.simpledex.domain.repository.PokedexRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetPokedexUseCase(
-    private val repository: PokemonRepository
+    private val repository: PokedexRepository
 ) {
-    operator fun invoke(limit: Int = 15, offset: Int = 0): Flow<PagedList<ListItem>> {
-        return repository.getPokedexEntries(limit = limit, offset = offset)
+    operator fun invoke(id: Int): Flow<Pokedex> {
+        return repository.getPokedex(id)
     }
 }

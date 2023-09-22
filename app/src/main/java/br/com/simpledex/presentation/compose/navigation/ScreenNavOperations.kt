@@ -30,7 +30,7 @@ sealed class ScreenNavOperations(val route: String, val argumentKey: String) {
         navHostController: NavHostController,
         argumentValue: List<T>?
     ) {
-        navHostController.currentBackStackEntry?.savedStateHandle?.set(
+        navHostController.currentBackStackEntry?.savedStateHandle?.putArgument(
             key = argumentKey,
             value = argumentValue
         )
