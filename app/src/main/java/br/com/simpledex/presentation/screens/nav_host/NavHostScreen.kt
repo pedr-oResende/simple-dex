@@ -19,6 +19,9 @@ fun NavHostScreen(onBackPressedDispatcher: OnBackPressedDispatcher) {
             home(
                 navHostController = navHostController
             )
+            pokedex(
+                navHostController = navHostController
+            )
             pokemonDetail(
                 navHostController = navHostController,
                 onBackPressedDispatcher = onBackPressedDispatcher

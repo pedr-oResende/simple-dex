@@ -10,6 +10,7 @@ import br.com.simpledex.data.mapper.game.other.indice.GameIndicesResponseToEntit
 import br.com.simpledex.data.mapper.game.version.*
 import br.com.simpledex.data.mapper.icons.IconsResponseToEntityMapper
 import br.com.simpledex.data.mapper.move.MovesResponseToEntityMapper
+import br.com.simpledex.data.mapper.pokedex.PokedexEntryResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokedex.PokedexResponseToEntityMapper
 import br.com.simpledex.data.mapper.pokemon.*
 import br.com.simpledex.data.mapper.stat.StatsResponseToEntityMapper
@@ -148,9 +149,15 @@ val mapperModule = module {
     }
 
     single {
+        PokedexEntryResponseToEntityMapper(
+            pokemonResponseToEntityMapper = get<ListItemResponseToEntityMapper>()
+        )
+    }
+
+    single {
         PokedexResponseToEntityMapper(
             pokemonEntriesResponseToListMapper = NullableListMapperImpl(
-                mapper = get<ListItemResponseToEntityMapper>()
+                mapper = get<PokedexEntryResponseToEntityMapper>()
             )
         )
     }

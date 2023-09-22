@@ -29,10 +29,7 @@ val repositoryModule = module {
             ),
             pokemonResponseToEntityMapper = get<PokemonResponseToEntityMapper>(),
             pokemonToLocalEntityMapper = get<PokemonToLocalEntityMapper>(),
-            localPokemonToEntityMapper = get<LocalPokemonToEntityMapper>(),
-            localListPokemonToEntityMapper = NullableListMapperImpl(
-                mapper = get<LocalPokemonToEntityMapper>()
-            )
+            localPokemonToEntityMapper = get<LocalPokemonToEntityMapper>()
         )
     }
 

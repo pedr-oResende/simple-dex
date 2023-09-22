@@ -2,6 +2,7 @@ package br.com.simpledex.data.remote.data_sources.pokemon
 
 import br.com.simpledex.data.remote.model.base.PagedListResponse
 import br.com.simpledex.data.remote.model.commom.ListItemResponse
+import br.com.simpledex.data.remote.model.pokedex.PokedexResponse
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.service.PokemonService
 import retrofit2.HttpException
@@ -9,14 +10,6 @@ import retrofit2.HttpException
 class PokemonRemoteDataSourceImpl(
     private val service: PokemonService
 ) : PokemonRemoteDataSource {
-    override suspend fun getPokemonList(limit: Int, offset: Int): PagedListResponse<ListItemResponse> {
-        val response = service.getPokemonList(limit, offset)
-        if (response.isSuccessful) {
-            return response.body()!!
-        } else {
-            throw HttpException(response)
-        }
-    }
 
     override suspend fun getPokemonById(id: Int): PokemonResponse {
         val response = service.getPokemonById(id)

@@ -24,11 +24,11 @@ import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun HomeMainScreen(
+fun PokedexMainScreen(
     navHostController: NavHostController,
     viewModel: PokedexViewModel = getViewModel()
 ) {
-    val homeUI = viewModel.homeUI.value
+    val homeUI = viewModel.pokedexUI.value
     Scaffold(
         topBar = {
             FadeAnimation(visible = homeUI.isSearching) {
@@ -42,6 +42,7 @@ fun HomeMainScreen(
             FadeAnimation(visible = !homeUI.isSearching) {
                 TopBar(
                     title = "National dex",
+                    onBackPressed = { navHostController.popBackStack() },
                     actions = {
                         TopBarIcon(
                             onClick = { viewModel.onEvent(PokedexEvents.OpenSearchBar) },
@@ -62,7 +63,7 @@ fun HomeMainScreen(
                     is StateUI.Error -> DefaultErrorScreen(message = response.message)
                     is StateUI.Idle -> Unit
                     is StateUI.Processed -> {
-                        PokedexMainScreen(
+                        PokedexScreen(
                             navHostController = navHostController,
                             pokemonList = homeUI.filteredPokemonList,
                             isLoading = viewModel.loadMoreResponse.collectAsState().value.loading(),
@@ -79,7 +80,7 @@ fun HomeMainScreen(
 }
 
 @Composable
-fun PokedexMainScreen(
+fun PokedexScreen(
     navHostController: NavHostController,
     pokemonList: List<Pokemon>,
     isLoading: Boolean,

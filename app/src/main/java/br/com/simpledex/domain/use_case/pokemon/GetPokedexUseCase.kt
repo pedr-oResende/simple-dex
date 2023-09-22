@@ -5,10 +5,10 @@ import br.com.simpledex.domain.model.commom.ListItem
 import br.com.simpledex.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetNationalDexUseCase(
+class GetPokedexUseCase(
     private val repository: PokemonRepository
 ) {
     operator fun invoke(limit: Int = 15, offset: Int = 0): Flow<PagedList<ListItem>> {
-        return repository.getPokemonList(limit = limit, offset = offset)
+        return repository.getPokedexEntries(limit = limit, offset = offset)
     }
 }

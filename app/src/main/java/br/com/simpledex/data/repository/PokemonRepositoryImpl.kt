@@ -1,17 +1,18 @@
 package br.com.simpledex.data.repository
 
 import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.commom.mapper.NullableListMapper
 import br.com.simpledex.data.local.data_sources.PokemonLocalDataSource
 import br.com.simpledex.data.local.model.PokemonTable
 import br.com.simpledex.data.mapper.base.PagedListResponseToPagedListMapper
 import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.data_sources.pokemon.PokemonRemoteDataSource
 import br.com.simpledex.data.remote.model.commom.ListItemResponse
+import br.com.simpledex.data.remote.model.pokedex.PokedexResponse
 import br.com.simpledex.data.remote.util.apiCall
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.model.base.PagedList
 import br.com.simpledex.domain.model.commom.ListItem
+import br.com.simpledex.domain.model.pokedex.Pokedex
 import br.com.simpledex.domain.repository.PokemonRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,18 +23,9 @@ class PokemonRepositoryImpl(
     val pokemonListResponseToEntityMapper: PagedListResponseToPagedListMapper<ListItemResponse, ListItem>,
     val pokemonResponseToEntityMapper: Mapper<PokemonResponse, Pokemon>,
     val localPokemonToEntityMapper: Mapper<PokemonTable, Pokemon>,
-    val localListPokemonToEntityMapper: NullableListMapper<PokemonTable, Pokemon>,
     val pokemonToLocalEntityMapper: Mapper<Pokemon, PokemonTable>,
+    private val pokedexResponseToEntityMapper: Mapper<PokedexResponse, Pokedex>
 ) : PokemonRepository {
-    override fun getPokemonList(limit: Int, offset: Int): Flow<PagedList<ListItem>> {
-        return flow {
-            apiCall {
-                val response = remoteDataSource.getPokemonList(limit, offset)
-                val mappedResponse = pokemonListResponseToEntityMapper.map(response)
-                emit(mappedResponse)
-            }
-        }
-    }
 
     override fun getPokemonById(id: Int): Flow<Pokemon> {
         return flow {
@@ -66,21 +58,6 @@ class PokemonRepositoryImpl(
                     emit(mappedResponse)
                 }
             }
-        }
-    }
-
-    override fun getPokemonNameFromLocal(): Flow<List<String>> {
-        return flow {
-            val pokemon = localDataSource.getPokemonName()
-            emit(pokemon)
-        }
-    }
-
-    override fun getPokemonFromLocal(): Flow<List<Pokemon>> {
-        return flow {
-            val localPokemon = localDataSource.getPokemon()
-            val pokemon = localListPokemonToEntityMapper.map(localPokemon)
-            emit(pokemon)
         }
     }
 

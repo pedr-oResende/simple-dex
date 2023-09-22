@@ -25,7 +25,7 @@ fun PokemonItem(
 ) {
     val typesColor = pokemon.types?.map { it.type?.color!! }.orEmpty()
     val background = if (typesColor.size > 1)
-        modifier.background(brush = Brush.horizontalGradient(colors = typesColor, tileMode = TileMode.Decal))
+        modifier.background(brush = Brush.horizontalGradient(colors = typesColor, tileMode = TileMode.Decal, startX = 0.8f))
     else
         modifier.background(color = typesColor.first())
     Row(

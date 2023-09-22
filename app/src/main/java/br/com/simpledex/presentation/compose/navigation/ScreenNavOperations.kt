@@ -5,7 +5,7 @@ import br.com.simpledex.commom.extension.putArgument
 
 sealed class ScreenNavOperations(val route: String, val argumentKey: String) {
 
-    fun <T> passArgument(argument: T?): String {
+    fun <T> routeWithArgument(argument: T?): String {
         return this.route.replace(oldValue = "{$argumentKey}", newValue = argument.toString())
     }
 
