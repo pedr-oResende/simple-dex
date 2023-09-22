@@ -69,7 +69,7 @@ fun PokedexMainScreen(
                     is StateUI.Error -> DefaultErrorScreen(message = response.message)
                     is StateUI.Idle -> Unit
                     is StateUI.Processed -> {
-                        PokedexScreen(
+                        PokemonListScreen(
                             onItemClick = { },
                             pokemonList = homeUI.filteredPokemonList,
                             isLoading = viewModel.loadMoreState.collectAsState().value.loading(),
@@ -85,7 +85,7 @@ fun PokedexMainScreen(
 }
 
 @Composable
-fun PokedexScreen(
+fun PokemonListScreen(
     onItemClick: () -> Unit,
     loadMorePokemon: () -> Unit,
     pokemonList: List<Pokemon>,
@@ -123,11 +123,11 @@ fun PokedexScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-fun PokedexScreenPrev() {
+private fun PokedexScreenPrev() {
     SimpleDexTheme {
-        PokedexScreen(
+        PokemonListScreen(
             onItemClick = {},
             loadMorePokemon = {},
             pokemonList = dummyPokemons,

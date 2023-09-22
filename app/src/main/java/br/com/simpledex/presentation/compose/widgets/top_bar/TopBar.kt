@@ -3,10 +3,13 @@ package br.com.simpledex.presentation.compose.widgets.top_bar
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,4 +38,17 @@ fun TopBar(
             titleContentColor = contentColorFor(containerColor)
         )
     )
+}
+
+@Preview
+@Composable
+fun TopBarPrev() {
+    SimpleDexTheme {
+        TopBar(
+            title = "TopBar title",
+            onBackPressed = {}
+        ) {
+            TopBarIcon(onClick = {}, imageVector = Icons.Default.Search)
+        }
+    }
 }

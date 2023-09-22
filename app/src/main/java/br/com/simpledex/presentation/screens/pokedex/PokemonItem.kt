@@ -70,7 +70,7 @@ fun PokemonItem(
 
 @Preview
 @Composable
-fun PokemonItemPrev() {
+private fun PokemonItemPrev() {
     SimpleDexTheme {
         val pokemon = dummyPokemons.first()
         PokemonItem(

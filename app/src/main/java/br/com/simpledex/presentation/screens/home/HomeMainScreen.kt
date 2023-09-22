@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.simpledex.commom.extension.idFromUrl
@@ -13,6 +14,7 @@ import br.com.simpledex.domain.model.commom.ListItem
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
 import br.com.simpledex.presentation.compose.navigation.Screens
+import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
 import br.com.simpledex.presentation.compose.widgets.top_bar.TopBar
 import br.com.simpledex.presentation.model.StateUI
 import org.koin.androidx.compose.getViewModel
@@ -71,5 +73,22 @@ fun HomeScreen(
                 }
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun HomeScreenPrev() {
+    SimpleDexTheme {
+        val regions = listOf("Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alolah", "Galar", "Hisui", "Paldea", "Kitagami")
+        HomeScreen(
+            pokedexList = regions.map { region ->
+                ListItem(
+                    name = region,
+                    url = ""
+                )
+            },
+            onItemClick = {}
+        )
     }
 }
