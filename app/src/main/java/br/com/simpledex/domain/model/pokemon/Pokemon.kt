@@ -2,10 +2,7 @@ package br.com.simpledex.domain.model.pokemon
 
 import br.com.simpledex.domain.model.ability.Abilities
 import br.com.simpledex.domain.model.commom.ListItem
-import br.com.simpledex.domain.model.game.GameIndices
-import br.com.simpledex.domain.model.game.other.HeldItems
-import br.com.simpledex.domain.model.game.other.Sprites
-import br.com.simpledex.domain.model.move.Moves
+import br.com.simpledex.domain.model.sprites.Sprites
 import br.com.simpledex.domain.model.stat.Stats
 import br.com.simpledex.domain.model.type.PastType
 import br.com.simpledex.domain.model.type.Types
@@ -22,11 +19,9 @@ data class Pokemon(
     val order: Int? = null,
     val pastTypes: List<PastType>? = null,
     val weight: Int? = null,
-    val heldItems: List<HeldItems>? = null,
     val abilities: List<Abilities>? = null,
     val forms: List<ListItem>? = null,
-    val gameIndices: List<GameIndices>? = null,
-    val moves: List<Moves>? = null,
+    val moves: List<ListItem>? = null,
     val species: ListItem? = null,
     val stats: List<Stats>? = null,
     val types: List<Types>? = null
@@ -39,7 +34,6 @@ data class Pokemon(
                 if (it.isLowerCase()) it.titlecase() else it.toString()
             }
             .orEmpty()
-
     }
 }
 

@@ -1,6 +1,4 @@
-package br.com.simpledex.domain.model.game.other
-
-import br.com.simpledex.domain.model.game.version.Versions
+package br.com.simpledex.domain.model.sprites
 
 data class Sprites(
     val backDefault: String? = null,
@@ -10,7 +8,5 @@ data class Sprites(
     val frontDefault: String? = null,
     val frontFemale: String? = null,
     val frontShiny: String? = null,
-    val frontShinyFemale: String? = null,
-    val other: Other? = null,
-    val versions: Versions? = null
+    val frontShinyFemale: String? = null
 )

@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class AnimatedResponse(
+class SpritesResponse(
     @SerializedName("back_default") val backDefault: String?,
     @SerializedName("back_female") val backFemale: String?,
     @SerializedName("back_shiny") val backShiny: String?,
