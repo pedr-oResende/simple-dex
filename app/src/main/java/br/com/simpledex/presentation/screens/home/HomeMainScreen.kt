@@ -2,31 +2,28 @@ package br.com.simpledex.presentation.screens.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.material3.Scaffold
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import br.com.simpledex.commom.extension.idFromUrl
-import br.com.simpledex.domain.model.commom.ListItem
-import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
-import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
+import br.com.simpledex.domain.model.generation.Gen
 import br.com.simpledex.presentation.compose.navigation.Screens
 import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
 import br.com.simpledex.presentation.compose.widgets.top_bar.TopBar
-import br.com.simpledex.presentation.model.StateUI
-import org.koin.androidx.compose.getViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeMainScreen(
-    navHostController: NavHostController,
-    viewModel: HomeViewModel = getViewModel()
+    navHostController: NavHostController
 ) {
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopBar(title = "Home")
+            TopBar(title = "Generations", scrollBehavior = scrollBehavior)
         }
     ) { paddingValues ->
         Column(
@@ -34,42 +31,35 @@ fun HomeMainScreen(
                 .padding(paddingValues = paddingValues)
                 .fillMaxSize()
         ) {
-            viewModel.pokedexListResponse.collectAsState().value.let { response ->
-                when (response) {
-                    is StateUI.Error -> DefaultErrorScreen(message = response.message)
-                    is StateUI.Idle -> Unit
-                    is StateUI.Processed -> {
-                        HomeScreen(
-                            pokedexList = response.data,
-                            onItemClick = { id ->
-                                navHostController.navigate(Screens.Pokedex.routeWithArgument(id))
-                            }
-                        )
-                    }
-                    is StateUI.Processing -> DefaultLoadingScreen()
+            val generation = Gen.values().dropLast(1)
+            HomeScreen(
+                generations = generation,
+                onItemClick = { id ->
+                    navHostController.navigate(Screens.Pokedex.routeWithArgument(id))
                 }
-            }
+            )
         }
     }
 }
 
 @Composable
 fun HomeScreen(
-    pokedexList: List<ListItem>,
-    onItemClick: (id: Int) -> Unit
+    generations: List<Gen>,
+    onItemClick: (id: String) -> Unit
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(3),
+        columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(pokedexList) { pokedex ->
-            PokedexItem(
-                modifier = Modifier.fillMaxSize(),
-                name = pokedex.name,
+        items(generations) { generation ->
+            GenerationItem(
+                modifier = Modifier.fillMaxSize(fraction = 0.8f),
+                name = generation.title,
+                backgroundImage = generation.image,
                 onClick = {
-                    onItemClick(pokedex.url.idFromUrl())
+                    onItemClick(generation.serverName)
                 }
             )
         }
@@ -80,14 +70,8 @@ fun HomeScreen(
 @Composable
 private fun HomeScreenPrev() {
     SimpleDexTheme {
-        val regions = listOf("Kanto", "Johto", "Hoenn", "Sinnoh", "Unova", "Kalos", "Alolah", "Galar", "Hisui", "Paldea", "Kitagami")
         HomeScreen(
-            pokedexList = regions.map { region ->
-                ListItem(
-                    name = region,
-                    url = ""
-                )
-            },
+            generations = Gen.values().dropLast(1),
             onItemClick = {}
         )
     }

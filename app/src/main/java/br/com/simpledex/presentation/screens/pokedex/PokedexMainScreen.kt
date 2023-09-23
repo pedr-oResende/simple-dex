@@ -27,6 +27,7 @@ import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokedexMainScreen(
     navHostController: NavHostController,

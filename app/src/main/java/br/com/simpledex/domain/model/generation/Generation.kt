@@ -9,55 +9,55 @@ data class Generation(
     val versionGroups: List<ListItem> = emptyList()
 )
 
-enum class Gen(val serverName: String, name: String, val image: String) {
+enum class Gen(val serverName: String, val title: String, val image: String) {
     One(
         serverName = "generation-i",
-        name = "gen one",
+        title = "gen one",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"
     ),
     Two(
         serverName = "generation-ii",
-        name = "gen two",
+        title = "gen two",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/197.png"
     ),
     Three(
         serverName = "generation-iii",
-        name = "gen three",
+        title = "gen three",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/384.png"
     ),
     Four(
         serverName = "generation-iv",
-        name = "gen four",
+        title = "gen four",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/445.png"
     ),
     Five(
         serverName = "generation-v",
-        name = "gen five",
+        title = "gen five",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/635.png"
     ),
     Six(
         serverName = "generation-vi",
-        name = "gen six",
-        image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/657.png"
+        title = "gen six",
+        image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/658.png"
     ),
     Seven(
         serverName = "generation-vii",
-        name = "gen seven",
+        title = "gen seven",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/722.png"
     ),
     Eight(
         serverName = "generation-viii",
-        name = "gen eight",
+        title = "gen eight",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/888.png"
     ),
     Nine(
         serverName = "generation-ix",
-        name = "gen nine",
+        title = "gen nine",
         image = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/959.png"
     ),
     None(
         serverName = "",
-        name = "",
+        title = "",
         image = ""
     );
 

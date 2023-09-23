@@ -17,6 +17,7 @@ fun TopBar(
     title: String,
     onBackPressed: (() -> Unit)? = null,
     containerColor: Color = MaterialTheme.colorScheme.surface,
+    scrollBehavior: TopAppBarScrollBehavior? = null,
     actions: @Composable RowScope.() -> Unit = {}
 ) {
     TopAppBar(
@@ -36,10 +37,12 @@ fun TopBar(
             actionIconContentColor = contentColorFor(containerColor),
             navigationIconContentColor = contentColorFor(containerColor),
             titleContentColor = contentColorFor(containerColor)
-        )
+        ),
+        scrollBehavior = scrollBehavior
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun TopBarPrev() {
