@@ -5,7 +5,8 @@ import br.com.simpledex.domain.model.commom.ListItem
 data class Generation(
     val id: Int? = null,
     val gen: Gen = Gen.None,
-    val pokemonSpecies: List<ListItem> = emptyList()
+    val pokemonSpecies: List<ListItem> = emptyList(),
+    val versionGroups: List<ListItem> = emptyList()
 )
 
 enum class Gen(val serverName: String, name: String, val image: String) {
@@ -58,5 +59,11 @@ enum class Gen(val serverName: String, name: String, val image: String) {
         serverName = "",
         name = "",
         image = ""
-    )
+    );
+
+    companion object {
+        fun getByName(name: String?) = Gen.values().first {
+                it.serverName == name
+            }
+    }
 }
