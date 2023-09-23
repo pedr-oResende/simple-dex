@@ -1,10 +1,9 @@
 package br.com.simpledex.data.repository
 
-import br.com.simpledex.commom.mapper.Mapper
 import br.com.simpledex.data.local.data_sources.PokemonLocalDataSource
-import br.com.simpledex.data.local.model.PokemonTable
+import br.com.simpledex.data.mapper.toEntity
+import br.com.simpledex.data.mapper.toTable
 import br.com.simpledex.data.remote.data_sources.pokemon.PokemonRemoteDataSource
-import br.com.simpledex.data.remote.model.pokemon.PokemonResponse
 import br.com.simpledex.data.remote.util.apiCall
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.repository.PokemonRepository
@@ -13,10 +12,7 @@ import kotlinx.coroutines.flow.flow
 
 class PokemonRepositoryImpl(
     val remoteDataSource: PokemonRemoteDataSource,
-    val localDataSource: PokemonLocalDataSource,
-    val pokemonResponseToEntityMapper: Mapper<PokemonResponse, Pokemon>,
-    val localPokemonToEntityMapper: Mapper<PokemonTable, Pokemon>,
-    val pokemonToLocalEntityMapper: Mapper<Pokemon, PokemonTable>
+    val localDataSource: PokemonLocalDataSource
 ) : PokemonRepository {
 
     override fun getPokemonById(id: Int): Flow<Pokemon> {
@@ -24,11 +20,11 @@ class PokemonRepositoryImpl(
             apiCall {
                 val localPokemon = localDataSource.getPokemonById(id)
                 if (localPokemon != null) {
-                    val pokemon = localPokemonToEntityMapper.map(localPokemon)
+                    val pokemon = localPokemon.toEntity()
                     emit(pokemon)
                 } else {
                     val response = remoteDataSource.getPokemonById(id)
-                    val mappedResponse = pokemonResponseToEntityMapper.map(response)
+                    val mappedResponse = response.toEntity()
                     updateLocalDataBase(mappedResponse)
                     emit(mappedResponse)
                 }
@@ -41,11 +37,11 @@ class PokemonRepositoryImpl(
             apiCall {
                 val localPokemon = localDataSource.getPokemonByName(name)
                 if (localPokemon != null) {
-                    val pokemon = localPokemonToEntityMapper.map(localPokemon)
+                    val pokemon = localPokemon.toEntity()
                     emit(pokemon)
                 } else {
                     val response = remoteDataSource.getPokemonByName(name)
-                    val mappedResponse = pokemonResponseToEntityMapper.map(response)
+                    val mappedResponse = response.toEntity()
                     updateLocalDataBase(mappedResponse)
                     emit(mappedResponse)
                 }
@@ -54,7 +50,7 @@ class PokemonRepositoryImpl(
     }
 
     private suspend fun updateLocalDataBase(pokemon: Pokemon) {
-        val localPokemon = pokemonToLocalEntityMapper.map(pokemon)
+        val localPokemon = pokemon.toTable()
         localDataSource.insertPokemon(localPokemon)
     }
 

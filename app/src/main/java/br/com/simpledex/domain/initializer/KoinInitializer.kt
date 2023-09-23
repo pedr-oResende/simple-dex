@@ -2,7 +2,6 @@ package br.com.simpledex.domain.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
-import br.com.simpledex.data.di.mapperModule
 import br.com.simpledex.data.di.repositoryModule
 import br.com.simpledex.data.local.di.databaseModule
 import br.com.simpledex.data.remote.service.di.apiModules
@@ -18,7 +17,6 @@ class KoinInitializer : Initializer<KoinApplication> {
             androidContext(context)
             modules(
                 apiModules,
-                mapperModule,
                 repositoryModule,
                 useCaseModule,
                 viewModelModule,

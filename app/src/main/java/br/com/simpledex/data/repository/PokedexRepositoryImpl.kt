@@ -1,10 +1,9 @@
 package br.com.simpledex.data.repository
 
-import br.com.simpledex.commom.mapper.Mapper
-import br.com.simpledex.data.mapper.base.PagedListResponseToPagedListMapper
+import br.com.simpledex.commom.extension.nullableMap
+import br.com.simpledex.data.mapper.toEntity
+import br.com.simpledex.data.mapper.toPagedList
 import br.com.simpledex.data.remote.data_sources.pokedex.PokedexRemoteDataSource
-import br.com.simpledex.data.remote.model.commom.ListItemResponse
-import br.com.simpledex.data.remote.model.pokedex.PokedexResponse
 import br.com.simpledex.data.remote.util.apiCall
 import br.com.simpledex.domain.model.commom.ListItem
 import br.com.simpledex.domain.model.pokedex.Pokedex
@@ -13,16 +12,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class PokedexRepositoryImpl(
-    private val remoteDataSource: PokedexRemoteDataSource,
-    private val pokedexListResponseToEntityMapper: PagedListResponseToPagedListMapper<ListItemResponse, ListItem>,
-    private val pokedexResponseToEntityMapper: Mapper<PokedexResponse, Pokedex>
+    private val remoteDataSource: PokedexRemoteDataSource
 ) : PokedexRepository {
 
     override fun getPokedexList(limit: Int, offset: Int): Flow<List<ListItem>> {
         return flow {
             apiCall {
                 val response = remoteDataSource.getPokedexList(limit, offset)
-                val mappedResponse = pokedexListResponseToEntityMapper.map(response)
+                val mappedResponse = response.toPagedList { responseList ->
+                    responseList.nullableMap { pokedex -> pokedex.toEntity() }
+                }
                 emit(mappedResponse.results)
             }
         }
@@ -32,8 +31,7 @@ class PokedexRepositoryImpl(
         return flow {
             apiCall {
                 val response = remoteDataSource.getPokedex(id)
-                val mappedResponse = pokedexResponseToEntityMapper.map(response)
-                emit(mappedResponse)
+                emit(response.toEntity())
             }
         }
     }

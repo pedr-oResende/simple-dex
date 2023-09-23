@@ -12,4 +12,6 @@ val apiModules = module {
 
     single { get<ServiceManager>().create(PokedexService::class.java) }
 
+    single { get<ServiceManager>().create(GenerationService::class.java) }
+
 }
