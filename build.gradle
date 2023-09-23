@@ -8,7 +8,6 @@ buildscript {
         viewmodel_compose_version = '2.6.0'
         activity_compose_version = '1.7.2'
         coil_compose_version = '2.4.0'
-        accompanist_compose_version = '0.25.1'
         coroutines_version = '1.7.3'
         material_version = '1.7.0'
         material_icons_version = '1.4.0-rc1'

@@ -2,7 +2,7 @@ package br.com.simpledex.presentation.compose.widgets.top_bar
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -26,7 +26,7 @@ fun TopBar(
         navigationIcon = {
             if (onBackPressed != null) {
                 IconButton(onClick = { onBackPressed() }) {
-                    Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = null)
                 }
             }
         },

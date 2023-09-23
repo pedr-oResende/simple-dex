@@ -1,6 +1,7 @@
 package br.com.simpledex.presentation.compose.widgets.top_bar
 
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
@@ -8,6 +9,7 @@ import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
 import br.com.simpledex.presentation.compose.widgets.edit_text.SearchEditText
 import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchTopBar(
     searchText: String,
