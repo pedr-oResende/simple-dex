@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import br.com.simpledex.commom.extension.isScrolledToTheEnd
+import br.com.simpledex.commom.extension.*
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.model.pokemon.dummyPokemons
 import br.com.simpledex.presentation.compose.animation.FadeAnimation
@@ -31,7 +31,7 @@ import org.koin.core.parameter.parametersOf
 fun PokedexMainScreen(
     navHostController: NavHostController,
     viewModel: PokedexViewModel = getViewModel {
-        parametersOf(navHostController.currentBackStackEntry?.arguments?.getString(Screens.Pokedex.argumentKey)?.toInt() ?: 0)
+        parametersOf(navHostController.currentBackStackEntry?.arguments?.getString(Screens.Pokedex.argumentKey)?.toInt().orZero())
     }
 ) {
     val homeUI = viewModel.pokedexUI.value
@@ -104,7 +104,7 @@ fun PokemonListScreen(
             PokemonItem(
                 name = pokemon.getFormattedName(),
                 sprite = pokemon.sprites?.frontDefault,
-                types = pokemon.types?.map { it.type ?: PokemonType.NONE },
+                types = pokemon.types?.map { it.type ifNull PokemonType.NONE },
                 onCLick = { onItemClick() }
             )
         }

@@ -4,8 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.simpledex.commom.extension.containsIgnoringAccent
-import br.com.simpledex.commom.extension.idFromUrl
+import br.com.simpledex.commom.extension.*
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.use_case.pokemon.*
 import br.com.simpledex.presentation.model.StateUI
@@ -94,16 +93,16 @@ class PokedexViewModel(
     }
 
     private suspend fun setupPokemons(offset: Int, onSuccess: suspend () -> Unit) {
-        val limit = if ((_pokedexUI.value.pokedex?.pokemonEntries?.size?.minus(offset) ?: 0) < 10) {
-            _pokedexUI.value.pokedex?.pokemonEntries?.size?.minus(offset) ?: 0
+        val limit = if (_pokedexUI.value.pokedex?.pokemonEntries?.size?.minus(offset).orZero() < 10) {
+            _pokedexUI.value.pokedex?.pokemonEntries?.size?.minus(offset).orZero()
         } else {
             10
         }
         val subList =
-            _pokedexUI.value.pokedex?.pokemonEntries?.subList(offset, offset + limit) ?: emptyList()
+            _pokedexUI.value.pokedex?.pokemonEntries?.subList(offset, offset + limit).orEmpty()
         val loadedPokemons = mutableListOf<Pokemon>()
         subList.forEach { pokedexEntry ->
-            getPokemonByIdUseCase(id = pokedexEntry.pokemon?.url?.idFromUrl() ?: 0).collect { pokemon ->
+            getPokemonByIdUseCase(id = pokedexEntry.pokemon?.url?.idFromUrl().orZero()).collect { pokemon ->
                 loadedPokemons.add(pokemon)
             }
             if (pokedexEntry == subList.last()) {
@@ -117,7 +116,7 @@ class PokedexViewModel(
     }
 
     fun isAllPokemonsLoaded(): Boolean {
-        return (_pokedexUI.value.pokedex?.pokemonEntries?.size ?: 0) == (_pokedexUI.value.pokemonList.size)
+        return (_pokedexUI.value.pokedex?.pokemonEntries?.size.orZero()) == (_pokedexUI.value.pokemonList.size)
     }
 
     private fun filter() {

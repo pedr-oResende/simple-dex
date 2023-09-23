@@ -12,6 +12,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.simpledex.commom.extension.ifNull
 import br.com.simpledex.commom.extension.isColorDark
 import br.com.simpledex.domain.model.pokemon.dummyPokemons
 import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
@@ -26,7 +27,7 @@ fun PokemonItem(
     sprite: String?,
     onCLick: () -> Unit
 ) {
-    val typesColor = types?.map { it.color } ?: emptyList()
+    val typesColor = types?.map { it.color }.orEmpty()
     val background =
         modifier
             .fillMaxWidth()
@@ -75,7 +76,7 @@ private fun PokemonItemPrev() {
         val pokemon = dummyPokemons.first()
         PokemonItem(
             name = pokemon.name,
-            types = pokemon.types?.map { it.type ?: PokemonType.NONE },
+            types = pokemon.types?.map { it.type ifNull PokemonType.NONE },
             sprite = pokemon.sprites?.frontDefault,
             onCLick = {}
         )

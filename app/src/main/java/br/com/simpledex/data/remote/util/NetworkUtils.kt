@@ -36,7 +36,7 @@ internal suspend fun <T : Any> apiCall(call: suspend () -> T): T {
 
 private fun convertErrorBody(throwable: HttpException): Message? {
     return try {
-        val json: String = throwable.response()?.errorBody()?.string() ?: ""
+        val json: String = throwable.response()?.errorBody()?.string().orEmpty()
         val jsonObject = JSONObject(json)
         Gson().fromJson(jsonObject.toString(), Message::class.java)
     } catch (throwable: Throwable) {

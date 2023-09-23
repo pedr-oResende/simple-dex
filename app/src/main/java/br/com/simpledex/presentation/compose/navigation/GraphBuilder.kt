@@ -4,6 +4,7 @@ package br.com.simpledex.presentation.compose.navigation
 import androidx.activity.OnBackPressedDispatcher
 import androidx.navigation.*
 import androidx.navigation.compose.composable
+import br.com.simpledex.commom.extension.orZero
 import br.com.simpledex.presentation.screens.home.HomeMainScreen
 import br.com.simpledex.presentation.screens.pokedex.PokedexMainScreen
 
@@ -28,7 +29,6 @@ fun NavGraphBuilder.pokedex(
             nullable = true
         })
     ) {
-        val pokedexId = it.arguments?.getString(Screens.Pokedex.argumentKey)?.toInt() ?: 0
         PokedexMainScreen(navHostController = navHostController)
     }
 }
