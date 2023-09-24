@@ -4,9 +4,8 @@ package br.com.simpledex.presentation.compose.navigation
 import androidx.activity.OnBackPressedDispatcher
 import androidx.navigation.*
 import androidx.navigation.compose.composable
-import br.com.simpledex.commom.extension.orZero
 import br.com.simpledex.presentation.screens.home.HomeMainScreen
-import br.com.simpledex.presentation.screens.pokedex.PokedexMainScreen
+import br.com.simpledex.presentation.screens.generation.GenerationMainScreen
 
 fun NavGraphBuilder.home(
     navHostController: NavHostController
@@ -19,17 +18,17 @@ fun NavGraphBuilder.home(
 }
 
 
-fun NavGraphBuilder.pokedex(
+fun NavGraphBuilder.generation(
     navHostController: NavHostController
 ) {
     composable(
-        route = Screens.Pokedex.route,
-        arguments = listOf(navArgument(Screens.Pokedex.argumentKey) {
+        route = Screens.Generation.route,
+        arguments = listOf(navArgument(Screens.Generation.argumentKey) {
             type = NavType.StringType
-            nullable = true
+            nullable = false
         })
     ) {
-        PokedexMainScreen(navHostController = navHostController)
+        GenerationMainScreen(navHostController = navHostController)
     }
 }
 

@@ -35,7 +35,7 @@ fun HomeMainScreen(
             HomeScreen(
                 generations = generation,
                 onItemClick = { id ->
-                    navHostController.navigate(Screens.Pokedex.routeWithArgument(id))
+                    navHostController.navigate(Screens.Generation.routeWithArgument(id))
                 }
             )
         }

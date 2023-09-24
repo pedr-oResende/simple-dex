@@ -1,16 +1,16 @@
 package br.com.simpledex.presentation.di
 
-import br.com.simpledex.presentation.screens.pokedex.PokedexViewModel
+import br.com.simpledex.presentation.screens.generation.GenerationViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
 
-    viewModel { (id: Int) ->
-        PokedexViewModel(
-            getPokedexUseCase = get(),
+    viewModel { (name: String) ->
+        GenerationViewModel(
+            getGenerationUseCase = get(),
             getPokemonByIdUseCase = get(),
-            id = id
+            name = name
         )
     }
 

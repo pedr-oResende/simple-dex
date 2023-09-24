@@ -7,7 +7,7 @@ sealed class Screens(route: String, argumentKey: String) : ScreenNavOperations(r
         argumentKey = "home_argument"
     )
 
-    data object Pokedex : Screens(
+    data object Generation : Screens(
         route = "pokedex?pokedex_argument={pokedex_argument}",
         argumentKey = "pokedex_argument"
     )

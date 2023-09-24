@@ -1,4 +1,4 @@
-package br.com.simpledex.presentation.screens.pokedex
+package br.com.simpledex.presentation.screens.generation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -23,41 +23,31 @@ import br.com.simpledex.presentation.compose.theme.SimpleDexTheme
 import br.com.simpledex.presentation.compose.widgets.top_bar.*
 import br.com.simpledex.presentation.model.PokemonType
 import br.com.simpledex.presentation.model.StateUI
-import br.com.simpledex.presentation.screens.pokedex.ui.PokedexEvents
+import br.com.simpledex.presentation.screens.generation.ui.GenerationEvents
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PokedexMainScreen(
+fun GenerationMainScreen(
     navHostController: NavHostController,
-    viewModel: PokedexViewModel = getViewModel {
-        parametersOf(navHostController.currentBackStackEntry?.arguments?.getString(Screens.Pokedex.argumentKey)?.toInt().orZero())
+    viewModel: GenerationViewModel = getViewModel {
+        parametersOf(
+            navHostController.currentBackStackEntry?.arguments?.getString(Screens.Generation.argumentKey)
+                .orEmpty()
+        )
     }
 ) {
-    val homeUI = viewModel.pokedexUI.value
+    val generationUI = viewModel.generationUI.value
     Scaffold(
         topBar = {
-            FadeAnimation(visible = homeUI.isSearching) {
-                SearchTopBar(
-                    searchText = homeUI.searchText,
-                    placeholderText = "Nome do pokémon",
-                    onClearClick = { viewModel.onEvent(PokedexEvents.CloseSearchBar) },
-                    onSearchTextChanged = { viewModel.onEvent(PokedexEvents.SearchTextChanged(it)) }
-                )
-            }
-            FadeAnimation(visible = !homeUI.isSearching) {
-                TopBar(
-                    title = homeUI.pokedex?.name.orEmpty(),
-                    onBackPressed = { navHostController.popBackStack() },
-                    actions = {
-                        TopBarIcon(
-                            onClick = { viewModel.onEvent(PokedexEvents.OpenSearchBar) },
-                            imageVector = Icons.Default.Search
-                        )
-                    }
-                )
-            }
+            SearchTopBar(
+                title = generationUI.generation.gen.title,
+                searchText = generationUI.searchText,
+                placeholderText = "Nome do pokémon",
+                onClearClick = { viewModel.onEvent(GenerationEvents.SearchTextChanged("")) },
+                onSearchTextChanged = { viewModel.onEvent(GenerationEvents.SearchTextChanged(it)) }
+            )
         }
     ) { paddingValues ->
         Column(
@@ -72,7 +62,7 @@ fun PokedexMainScreen(
                     is StateUI.Processed -> {
                         PokemonListScreen(
                             onItemClick = { },
-                            pokemonList = homeUI.filteredPokemonList,
+                            pokemonList = generationUI.filteredPokemonList,
                             isLoading = viewModel.loadMoreState.collectAsState().value.loading(),
                             isAllPokemonsLoaded = viewModel.isAllPokemonsLoaded(),
                             loadMorePokemon = { viewModel.loadMorePokemon() }
