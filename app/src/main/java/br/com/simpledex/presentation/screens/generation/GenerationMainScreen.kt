@@ -2,8 +2,6 @@ package br.com.simpledex.presentation.screens.generation
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -15,7 +13,6 @@ import androidx.navigation.NavHostController
 import br.com.simpledex.commom.extension.*
 import br.com.simpledex.domain.model.pokemon.Pokemon
 import br.com.simpledex.domain.model.pokemon.dummyPokemons
-import br.com.simpledex.presentation.compose.animation.FadeAnimation
 import br.com.simpledex.presentation.compose.components.state.error.DefaultErrorScreen
 import br.com.simpledex.presentation.compose.components.state.loading.DefaultLoadingScreen
 import br.com.simpledex.presentation.compose.navigation.Screens
@@ -27,7 +24,6 @@ import br.com.simpledex.presentation.screens.generation.ui.GenerationEvents
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GenerationMainScreen(
     navHostController: NavHostController,
